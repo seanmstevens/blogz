@@ -1,12 +1,48 @@
-from flask import request, redirect, render_template
+from flask import request, redirect, render_template, session, flash
 from app import app, db
-from models import Blog
+from models import Blog, User
 import random
 
 
 @app.route('/')
 def index():
-    return redirect('/blog')
+    return redirect('/login')
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+
+    if request.method is 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter_by(username=username).first()
+        if user and password is user.password:
+            session['user'] = username
+            flash('Welcome back, ' + username + '!')
+            return redirect('/blog')
+        elif not user:
+            flash('That user name does not yet exist.', 'error')
+        else:
+            flash('That password is incorrect.', 'error')
+
+    return render_template('login.html', 
+                           username=username,)
+
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    
+    if request.method is 'POST':
+        username, password, verify = (
+            request.form['username'], 
+            request.form['password'], 
+            request.form['verify'],
+        )
+        user = User.query.filter_by(username=username).first()
+
+        if not any()
+            flash('Please enter a username and password')
+
 
 
 @app.route('/blog')
