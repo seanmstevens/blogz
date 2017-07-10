@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block head %}
+        <link type="text/css" href="static/login.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+            <div class = "wrapper">
+                <div class = 'signup-container'>
+                    <div class = "form-container-signup">
+                        <h1>Login</h1>
+                        <hr>
+                        <form method = 'POST'>
+                            <input class = 'signup-field {% if usererror %}error-border{% endif %}'
+                            type = 'text' placeholder = 'Username' name = 'username' value = '{{ username }}'>
+                            <input class = 'signup-field {% if passerror %}error-border{% endif %}' 
+                            type = 'password' placeholder = 'Password' name = 'password'>
+                            <input class = "submit-button" type = 'submit' value = "Login">
+                        </form>
+                    </div>
+                    <p id = "create-msg">No account yet? <a id = "create-account"
+                        href = "/signup">Create one!</a></p>
+                </div>
+            </div>
+{% endblock %}

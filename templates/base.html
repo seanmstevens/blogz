@@ -4,24 +4,36 @@
         <title>{{ title }}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="static/mainpage.css" rel="stylesheet">
-        <script src="https://use.fontawesome.com/aebe085bd7.js"></script>
+        <link type="text/css" href="static/mainpage.css" rel="stylesheet">
+        {% block head %}
+        {% endblock %}
         <script type="text/javascript" src="static/scripts.js"></script>
     </head>
     <body>
         <ul id = "topnav">
-            <li><i class = "fa fa-bars fa-2x" aria-hidden="true" onclick = "openNav()"></i></li>
+            <li class = 'hamburger-menu' onclick = "openNav()"><img src = '/static/images/hamburger.png'></li>
             <li><a class = "navlink-main" href = '/blog'>tinyblog.io</a></li>
+            <li><a class = "navlink {% if request.path == '/' %}active{% endif %}"
+                    href = '/'>Home</a></li>
             {# The following conditional is being used to check if a query parameter is present. If it is, do not apply
             the supplemental CSS class. #}
             <li><a class = "navlink {% if request.path == '/blog' and len(request.args) == 0 %}active{% endif %}"
                     href = '/blog'>My Bloglist</a></li>
             <li><a class = "navlink {% if request.path == '/newpost' %}active{% endif %}"
                     href = '/newpost'>New Blog Post</a></li>
+            {# Here we are dynamically changing the navbar menu links based on if a user is logged in or not #}
+            {% if not session['user'] %}
+                <li class = 'userlink'><a class = "navlink {% if request.path == '/login' %}active{% endif %}"
+                        href = '/login'>Login</a></li>
+            {% else %}
+                <li class = 'userlink'><a class = "navlink {% if request.path == '/logout' %}active{% endif %}"
+                    href = '/logout'>Logout</a></li>
+                <li class = 'userlink'><a class = "navlink" href= '#'>Welcome, {{ user }}!</a></li>
+            {% endif %}
         </ul>
         <div id = "sidenav" class = "sidenav">
             <div class = "navlink-wrapper">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <p class="closebtn" onclick="closeNav()">&times;</p>
                 <hr class = "menu-line">
                 <a href="/blog" class="hublink">Bloglist</a>
                 <a href="javascript:void(0)" id = "entries-link" class="hublink">Entries</a>
@@ -34,7 +46,7 @@
             </div>
         </div>
             <div id = "menu-footer" class = "menu-footer">
-                <a class = "navlink-main" href = "/blog">tinyblog.io</a>
+                <a class = "navlink-main white" href = "/blog">tinyblog.io</a>
             </div>
         <div id = "overlay" class = "overlay" onclick = "closeNav()"></div>
         <div id = "main">

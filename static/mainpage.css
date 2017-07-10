@@ -6,10 +6,12 @@
 }
 
 body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
     font-family: "Raleway", sans-serif;
     background-color: #efefef;
     color: #3f3f43;
-    margin: 0;
     overflow-x: hidden;
 }
 
@@ -51,10 +53,13 @@ li {
     float: left;
 }
 
-.fa-bars {
-    padding: 12.5px 12.5px 12.5px 22.5px;
+li.userlink {
+    float: right;
+}
+
+.hamburger-menu {
+    margin: 21.5px 6.5px 16.5px 22.5px;
     cursor: pointer;
-    color: #f5f6f6;
 }
 
 a.navlink, a.navlink:visited {
@@ -104,6 +109,10 @@ a.navlink-main, a.navlink-main:visited {
     text-decoration: none;
 }
 
+a.navlink-main.white {
+    color: white;
+}
+
 /* Side Navigation */
 
 .sidenav {
@@ -128,6 +137,10 @@ a.navlink-main, a.navlink-main:visited {
 
 hr.menu-line {
     width: 90%;
+}
+
+.closebtn {
+    cursor: pointer;
 }
 
 .side-navlink, .closebtn, .hublink {
@@ -197,6 +210,7 @@ hr.menu-line {
 }
 
 #main {
+    height: 100%;
     overflow-x: hidden;
     transition: transform 275ms cubic-bezier(.5,.08,0,1);
 }

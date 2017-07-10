@@ -1,27 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class = "content-container">
-    <h1 class = "title" >My Bloglist</h1>
-    <div class = "bloglist-wrapper">
-        {% for blog in blogs %}
-            <div class = "entry-container">
-                <div class = "date-bubble">
-                    <p class = "pub-month">{{ blog.pubdate.strftime('%b') }}</p>
-                    <p class = "pub-date">{{ blog.pubdate.strftime('%d') }}</p>
+            <div class = "content-container">
+                <h1 class = "title" >My Bloglist</h1>
+                <div class = "bloglist-wrapper">
+                    {% for blog in blogs %}
+                        <div class = "entry-container">
+                            <div class = "date-bubble">
+                                <p class = "pub-month">{{ blog.pubdate.strftime('%b') }}</p>
+                                <p class = "pub-date">{{ blog.pubdate.strftime('%d') }}</p>
+                            </div>
+                            <div class = "blog-details break">
+                                <a class = "blog-title" href = '/blog?id={{ blog.id }}'>{{ blog.title }}</a>
+                                <p class = "pub-time">Published by {{ blog.owner.username }} at {{ blog.pubdate.strftime('%I:%M%p') }}</p>
+                            </div>
+                            <p class = "blog-body" >{{ blog.body }}</p>
+                            <a class = "goto-entry-button" href = '/blog?id={{ blog.id }}'>READ MORE</a>
+                        </div>
+                        {# The following conditional will not add a row separator after the last blog entry #}
+                        {% if blogs.index(blog) != (len(blogs) - 1) %}
+                            <hr class = "separator">
+                        {% endif %}
+                    {% endfor %}
                 </div>
-                <div class = "blog-details break">
-                    <a class = "blog-title" href = '/blog?id={{ blog.id }}'>{{ blog.title }}</a>
-                    <p class = "pub-time">Published at {{ blog.pubdate.strftime('%I:%M%p') }}</p>
-                </div>
-                <p class = "blog-body" >{{ blog.body }}</p>
-                <a class = "goto-entry-button" href = '/blog?id={{ blog.id }}'>READ MORE</a>
             </div>
-            {# The following conditional will not add a row separator after the last blog entry #}
-            {% if blogs.index(blog) != (len(blogs) - 1) %}
-                <hr class = "separator">
-            {% endif %}
-        {% endfor %}
-    </div>
-</div>
 {% endblock %}
