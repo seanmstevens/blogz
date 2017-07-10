@@ -12,7 +12,10 @@ def require_login():
 
 @app.route('/')
 def index():
-    return redirect('/blog')
+    users = User.query.all()
+    return render_template('index.html',
+                           title="Home",
+                           users=users,)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -26,6 +29,9 @@ def login():
             session['user'] = username
             flash('Welcome back, ' + username + '!', 'confirmation')
             return redirect('/blog')
+
+        # TODO - Implement Input Validation
+
         elif not user:
             flash('That username does not yet exist.', 'error')
         
@@ -47,6 +53,8 @@ def signup():
         )
 
         user = User.query.filter_by(username=username).first()
+
+        # TODO - Implement input validation
 
         if not user:
             new_user = User(username, password)

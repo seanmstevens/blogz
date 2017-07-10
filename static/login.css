@@ -42,6 +42,10 @@ div.wrapper {
     color: #c3c8d5;
 }
 
+.signup-field:hover {
+    border: 2px solid #c3c8d5;
+}
+
 .signup-field:focus {
     outline: none;
     border: 2px solid var(--material-blue);

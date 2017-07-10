@@ -44,7 +44,6 @@ ul#topnav {
     box-shadow: 0 0 5px #444444;
     background-color: #303031;
     list-style: none;
-    overflow: hidden;
     margin: 0;
     padding: 0;
 }
@@ -55,6 +54,10 @@ li {
 
 li.userlink {
     float: right;
+}
+
+.userlink.spacer {
+    margin-right: 40px;
 }
 
 .hamburger-menu {
