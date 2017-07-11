@@ -1,0 +1,116 @@
+/* --- SIGNUP FORM --- */
+
+form {
+    width: 340px;
+    margin-top: 15px;
+}
+
+div.wrapper {
+    display: table;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.signup-container {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.form-container-signup {
+    font-family: "Raleway", sans-serif;
+    border-left: 4px solid var(--material-blue);
+    padding: 30px;
+    background-color: white;
+    -webkit-box-shadow: 0 0 4px #9c9c9c;
+            box-shadow: 0 0 4px #9c9c9c;
+}
+
+.signup-field {
+    width: 290px;
+    font-family: "Raleway", sans-serif;
+    border: 2px solid transparent;
+    margin: 12px 0;
+    font-weight: 700;
+    font-size: 1em;
+    color: #787d88;
+    background-color: #fff;
+    padding: 10px 18px;
+    border-radius: 6px;
+    -webkit-transition: border 120ms ease-in;
+    transition: border 120ms ease-in;
+}
+
+.signup-field::-webkit-input-placeholder {
+    color: #c3c8d5;
+}
+
+.signup-field:-ms-input-placeholder {
+    color: #c3c8d5;
+}
+
+.signup-field::placeholder {
+    color: #c3c8d5;
+}
+
+.signup-field:hover {
+    border: 2px solid #c3c8d5;
+}
+
+.signup-field:focus {
+    outline: none;
+    border: 2px solid var(--material-blue);
+}
+
+.submit-button {
+    font-family: "Raleway", sans-serif;
+    background-color: var(--material-blue);
+    width: 330px;
+    margin: 30px 0 10px;
+    font-weight: 700;
+    border-radius: 6px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #0089c7;
+    font-size: 1.1em;
+    padding: 14px 18px;
+    color: #FFF;
+}
+
+.submit-button:focus {
+    outline: none;
+}
+
+.submit-button:hover{
+    cursor: pointer;
+    background-color: #26b7f9;
+}
+
+.error {
+    position: relative;
+    right: -6px;
+    top: -8px;
+    color: var(--material-red);
+    font-size: 0.8rem;
+}
+
+.error-border {
+    border-color: var(--material-red);
+}
+
+#create-msg {
+    font-size: 0.8em;
+    text-align: center;
+    text-decoration: none;
+}
+
+#create-account:link, #create-account:visited {
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    color: var(--material-blue);
+    text-decoration: none;
+}
+
+#create-account:hover, #create-account:visited:hover {
+    color: #0089c7;
+}

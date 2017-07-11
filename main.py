@@ -9,6 +9,14 @@ def require_login():
     if all([request.endpoint not in whitelist, 'user' not in session, '/static/' not in request.path]):
         return redirect('/login')
 
+def get_user():
+    user = User.query.filter_by(username=session.get('user')).first()
+    current_user = ''
+    if user:
+        current_user = user.username
+
+    return current_user
+
 
 @app.route('/')
 def index():
@@ -76,38 +84,33 @@ def logout():
 def bloglist():
     blog_id = request.args.get('id')
     blogs = Blog.query.order_by(Blog.pubdate.desc()).all()
-    user = User.query.filter_by(username=session.get('user')).first()
-    
-    current_user = ''
-    if user:
-        current_user = user.username
 
-    if blog_id:
-        blog = Blog.query.get(blog_id)
-        pubmonth = blog.pubdate.strftime('%b')
-        pubdate = blog.pubdate.strftime('%d')
-        pubtime = blog.pubdate.strftime('%I:%M %p')
-        return render_template('blog.html',
-                               title=blog.title,
-                               pubmonth=pubmonth,
-                               pubdate=pubdate,
-                               pubtime=pubtime,
-                               author=blog.owner.username,
-                               blog_title=blog.title,
-                               blog_body=blog.body,
-                               blogs=blogs,
-                               user=current_user,)
-    else:
+    if not blog_id:
         return render_template('bloglist.html',
                                title='Bloglist',
                                blogs=blogs,
-                               user=current_user,)
+                               user=get_user(),)
+
+    blog = Blog.query.get(blog_id)
+    pubmonth = blog.pubdate.strftime('%b')
+    pubdate = blog.pubdate.strftime('%d')
+    pubtime = blog.pubdate.strftime('%I:%M %p')
+    return render_template('blog.html',
+                            title=blog.title,
+                            pubmonth=pubmonth,
+                            pubdate=pubdate,
+                            pubtime=pubtime,
+                            author=blog.owner.username,
+                            blog_title=blog.title,
+                            blog_body=blog.body,
+                            blogs=blogs,
+                            user=get_user(),)
 
 
 @app.route('/newpost', methods = ['POST', 'GET'])
 def newpost():
     blogs = Blog.query.order_by(Blog.pubdate.desc()).all()
-    user = User.query.filter_by(username=session['user']).first()
+    user = get_user()
 
     placeholder = random.choice([
         "What's on your mind?",
@@ -141,12 +144,14 @@ def newpost():
                                    title_error=title_error,
                                    body_error=body_error,
                                    placeholder=placeholder,
-                                   blogs=blogs,)
+                                   blogs=blogs,
+                                   user=user,)
 
     return render_template('newpost.html',
                            title='New Blog Post',
                            placeholder=placeholder,
-                           blogs=blogs,)
+                           blogs=blogs,
+                           user=user,)
 
 
 if __name__ == '__main__':

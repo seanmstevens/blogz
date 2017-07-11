@@ -1,0 +1,40 @@
+.flex-container {
+    display: flex;
+    height: 100vh;
+    margin: auto;
+    width: 80%;
+    align-items: center;
+    justify-content: space-around;
+    align-content: space-around;
+    flex-wrap: wrap;
+}
+
+.user-box {
+    height: 130px;
+    flex-basis: 130px;
+    cursor: pointer;
+    font-size: 5em;
+    font-weight: 700;
+    text-shadow: 5px 5px rgba(40, 40, 40, 0.4);
+    border: 6px solid gainsboro;
+    border-radius: 1000px;
+    text-align: center;
+    background: var(--material-blue);
+    color: white;
+}
+
+.user-box-overlay {
+    height: 130px;
+    flex-basis: 130px;
+    border-radius: 1000px;
+    transition: background 275ms cubic-bezier(.5, .08 ,0 ,1);;
+}
+
+.user-initial {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 130px;
+    border-radius: 1000px;
+    transition: filter 275ms cubic-bezier(.5, .08 ,0 ,1);
+}

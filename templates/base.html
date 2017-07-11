@@ -4,7 +4,7 @@
         <title>{{ title }}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link type="text/css" href="static/mainpage.css" rel="stylesheet">
+        <link type="text/css" href="static/css/mainpage.css" rel="stylesheet">
         {% block head %}
         {% endblock %}
         <script type="text/javascript" src="static/scripts.js"></script>
@@ -33,8 +33,11 @@
         </ul>
         <div id = "sidenav" class = "sidenav">
             <div class = "navlink-wrapper">
-                <p class="closebtn" onclick="closeNav()">&times;</p>
+                <div class="closebtn" onclick="closeNav()">&times;</div>
                 <hr class = "menu-line">
+                {% if not session['user'] %}
+                    <a href="/login" class="hublink">Login</a>
+                {% endif %}
                 <a href="/blog" class="hublink">Bloglist</a>
                 <a href="javascript:void(0)" id = "entries-link" class="hublink">Entries</a>
                 <div id = "expanding-list">

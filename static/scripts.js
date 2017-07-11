@@ -43,7 +43,7 @@ function closeNav() {
     footer.style.transform = "translate(-100%)";
     main.style.transform = "translate(0)";
     document.getElementById('overlay').className = 'overlay';
-}
+};
 
 // Expanding Submenu
 
@@ -59,9 +59,40 @@ function expandList() {
             list.style.height = boxHeight + "px";
         } else {
             list.style.height = "0";
+        };
+    };
+};
+
+function randomColor() {
+    var boxes = document.getElementsByClassName('user-box');
+    var colors = ['#3498db',
+                  '#9b59b6',
+                  '#34495e',
+                  '#f1c40f',
+                  '#e57e22',
+                  '#e74c3c',
+                  '#bdc3c7',
+                  '#2ecc71',
+                  '#16a085',           
+    ]
+    for (var i = 0; i < boxes.length; i++) {
+        boxes[i].style.background = colors[Math.floor(Math.random() * colors.length)]
+    };
+};
+
+function blurLetter() {
+    var boxes = document.getElementsByClassName('user-box');
+    for (var i = 0; i < boxes.length; i++) {
+        boxes[i].onmouseover = function() {
+            this.firstElementChild.style.background = "rgba(40, 40, 40, 0.55)";
+            this.firstElementChild.firstElementChild.style.filter = "blur(8px)";
         }
-    }
-}
+        boxes[i].onmouseout = function() {
+            this.firstElementChild.style.background = "initial";
+            this.firstElementChild.firstElementChild.style.filter = "initial";
+        };
+    };
+};
 
 function addLoadEvent(func) {
     var oldonload = window.onload;
@@ -73,9 +104,11 @@ function addLoadEvent(func) {
                 oldonload();
             }
         func();
-        }
-    }
-}
+        };
+    };
+};
 
+addLoadEvent(randomColor)
+addLoadEvent(blurLetter);
 addLoadEvent(charCounter);
 addLoadEvent(expandList);

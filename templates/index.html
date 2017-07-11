@@ -1,7 +1,15 @@
 {% extends 'base.html' %}
+{% block head %}
+        <link type="text/css" href="static/css/home.css" rel="stylesheet">
+{% endblock %}
 {% block content %}
-{% for user in users %}
-    <p>{{ user.username }}</p>
-{% endfor %}
-
+        <div class='flex-container'>
+            {% for user in users %}
+                <div class='user-box' id='user-box'>
+                    <div class = 'user-box-overlay'>
+                        <span id="user-initial" class="user-initial">{{ user.username[0] }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
 {% endblock %}
