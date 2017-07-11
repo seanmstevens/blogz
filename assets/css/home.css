@@ -13,13 +13,10 @@
     height: 130px;
     flex-basis: 130px;
     cursor: pointer;
-    font-size: 5em;
-    font-weight: 700;
     border: 6px solid gainsboro;
     border-radius: 1000px;
     text-align: center;
     background: var(--material-blue);
-    color: white;
 }
 
 .user-box-overlay {
@@ -30,10 +27,53 @@
 }
 
 .user-initial {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     display: flex;
+    margin: 0;
     justify-content: center;
     align-items: center;
     height: 130px;
     border-radius: 1000px;
+    font-size: 5em;
+    font-weight: 700;
+    color: white;
     transition: filter 275ms cubic-bezier(.5, .08 ,0 ,1);
+}
+
+.no-underline {
+    text-decoration: none;
+    position: relative;
+    bottom: 130px;
+}
+
+.user-details {
+    z-index: 13;
+    display: flex;
+    height: 130px;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 275ms cubic-bezier(.5, .08 ,0 ,1);
+}
+
+hr.userlink-separator {
+    border: 1px solid white;
+    width: 80%;
+}
+
+.userlink {
+    display: block;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    text-shadow: none;
+    text-decoration: none;
+    color: white;
+}
+
+.posts {
+    font-size: 0.75rem;
+    color: white;
+    font-style: italic;
 }

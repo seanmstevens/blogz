@@ -23,12 +23,12 @@
                     href = '/newpost'>New Blog Post</a></li>
             {# Here we are dynamically changing the navbar menu links based on if a user is logged in or not #}
             {% if not session['user'] %}
-                <li class = 'userlink spacer'><a class = "navlink {% if request.path == '/login' %}active{% endif %}"
+                <li class = 'user-navlink spacer'><a class = "navlink {% if request.path == '/login' %}active{% endif %}"
                         href = '/login'>Login</a></li>
             {% else %}
-                <li class = 'userlink spacer'><a class = "navlink {% if request.path == '/logout' %}active{% endif %}"
+                <li class = 'user-navlink spacer'><a class = "navlink {% if request.path == '/logout' %}active{% endif %}"
                     href = '/logout'>Logout</a></li>
-                <li class = 'userlink'><a class = "navlink" href= '#'>Welcome, {{ user }}!</a></li>
+                <li class = 'user-navlink'><a class = "navlink" href= '#'>Welcome, {{ user.username }}!</a></li>
             {% endif %}
         </ul>
         <div id = "sidenav" class = "sidenav">

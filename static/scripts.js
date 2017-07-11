@@ -89,7 +89,7 @@ function userBoxColor() {
     for (let i = 0; i < boxes.length; i++) {
         var idx = Math.floor(Math.random() * colors.length)
         boxes[i].style.background = colors[idx].color;
-        boxes[i].style.textShadow = shadowGen(colors[idx].shadow, 7);
+        boxes[i].firstElementChild.firstElementChild.style.textShadow = shadowGen(colors[idx].shadow, 7);
     };
 };
 
@@ -97,12 +97,14 @@ function blurLetter() {
     var boxes = document.getElementsByClassName('user-box');
     for (let i = 0; i < boxes.length; i++) {
         boxes[i].onmouseover = function() {
-            this.firstElementChild.style.background = "rgba(40, 40, 40, 0.55)";
+            this.firstElementChild.style.background = "rgba(40, 40, 40, 0.65)";
             this.firstElementChild.firstElementChild.style.filter = "blur(8px)";
+            this.getElementsByClassName('user-details')[0].style.opacity = '1';
         }
         boxes[i].onmouseout = function() {
             this.firstElementChild.style.background = "initial";
             this.firstElementChild.firstElementChild.style.filter = "initial";
+            this.getElementsByClassName('user-details')[0].style.opacity = '0';
         };
     };
 };

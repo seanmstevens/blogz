@@ -7,8 +7,15 @@
             {% for user in users %}
                 <div class='user-box' id='user-box'>
                     <div class = 'user-box-overlay'>
-                        <span id="user-initial" class="user-initial">{{ user.username[0] }}</span>
+                        <p id="user-initial" class="user-initial">{{ user.username[0] }}</span>
                     </div>
+                    <a class="no-underline" href="/blog?user={{ user.id }}">
+                        <div class="user-details">
+                            <span class='userlink'>{{ user.username }}</span>
+                            <hr class="userlink-separator">
+                            <span class="posts">{{ posts[user] }} posts</span>
+                        </div>
+                    </a>
                 </div>
             {% endfor %}
         </div>

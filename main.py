@@ -13,17 +13,31 @@ def get_user():
     user = User.query.filter_by(username=session.get('user')).first()
     current_user = ''
     if user:
-        current_user = user.username
+        current_user = user
 
     return current_user
 
+def get_blogs():
+    blogs = Blog.query.order_by(Blog.pubdate.desc()).all()
+    return blogs
+
+def get_posts():
+    posts_dict = {}
+    users =  User.query.all()
+    for user in users:
+        posts_dict[user] = len(Blog.query.filter_by(owner_id=user.id).all())
+    return posts_dict
 
 @app.route('/')
 def index():
     users = User.query.all()
+    blogs = get_blogs()
     return render_template('index.html',
                            title="Home",
-                           users=users,)
+                           users=users,
+                           blogs=blogs,
+                           user=get_user(),
+                           posts=get_posts())
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -42,12 +56,13 @@ def login():
 
         elif not user:
             flash('That username does not yet exist.', 'error')
-        
+
         else:
             flash('That password is incorrect.', 'error')
 
     return render_template('login.html',
-                           title='Login',)
+                           title='Login',
+                           user=get_user())
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -72,7 +87,8 @@ def signup():
             return redirect('/blog')
 
     return render_template('signup.html',
-                           title='Signup',)
+                           title='Signup',
+                           user=get_user())
 
 @app.route('/logout')
 def logout():

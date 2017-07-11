@@ -55,11 +55,11 @@ li {
     float: left;
 }
 
-li.userlink {
+li.user-navlink {
     float: right;
 }
 
-.userlink.spacer {
+.user-navlink.spacer {
     margin-right: 40px;
 }
 
