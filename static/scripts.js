@@ -63,26 +63,39 @@ function expandList() {
     };
 };
 
-function randomColor() {
+function userBoxColor() {
     var boxes = document.getElementsByClassName('user-box');
-    var colors = ['#3498db',
-                  '#9b59b6',
-                  '#34495e',
-                  '#f1c40f',
-                  '#e57e22',
-                  '#e74c3c',
-                  '#bdc3c7',
-                  '#2ecc71',
-                  '#16a085',           
+    var colors = [{color:'#3498db', shadow:'#1468a1'},
+                  {color:'#9b59b6', shadow:'#613474'},
+                  {color:'#34495e', shadow:'#1b2b3c'},
+                  {color:'#f1c40f', shadow:'#9e8006'},
+                  {color:'#e57e22', shadow:'#935015'},
+                  {color:'#e74c3c', shadow:'#912a1f'},
+                  {color:'#bdc3c7', shadow:'#72777a'},
+                  {color:'#2ecc71', shadow:'#16713d'},
+                  {color:'#16a085', shadow:'#0d6756'}
     ]
-    for (var i = 0; i < boxes.length; i++) {
-        boxes[i].style.background = colors[Math.floor(Math.random() * colors.length)]
+    var shadowGen = function(color, slen) {
+        shadow = ''
+        for (let i = 1; i < slen; i++) {
+            shadow += i + 'px ' + i + 'px ' + color;
+            if (i !== slen - 1) {
+                shadow += ', '
+            };
+        };
+        return shadow;
+    };
+
+    for (let i = 0; i < boxes.length; i++) {
+        var idx = Math.floor(Math.random() * colors.length)
+        boxes[i].style.background = colors[idx].color;
+        boxes[i].style.textShadow = shadowGen(colors[idx].shadow, 7);
     };
 };
 
 function blurLetter() {
     var boxes = document.getElementsByClassName('user-box');
-    for (var i = 0; i < boxes.length; i++) {
+    for (let i = 0; i < boxes.length; i++) {
         boxes[i].onmouseover = function() {
             this.firstElementChild.style.background = "rgba(40, 40, 40, 0.55)";
             this.firstElementChild.firstElementChild.style.filter = "blur(8px)";
@@ -108,7 +121,7 @@ function addLoadEvent(func) {
     };
 };
 
-addLoadEvent(randomColor)
+addLoadEvent(userBoxColor)
 addLoadEvent(blurLetter);
 addLoadEvent(charCounter);
 addLoadEvent(expandList);
