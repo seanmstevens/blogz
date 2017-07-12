@@ -10,29 +10,31 @@
         <script type="text/javascript" src="static/scripts.js"></script>
     </head>
     <body>
-        <ul id = "topnav">
-            <li class = 'hamburger-menu' onclick = "openNav()"><img src = '/static/images/hamburger.svg' onerror="this.src='hamburger.png'"></li>
-            <li><a class = "navlink-main" href = '/blog'>tinyblog.io</a></li>
-            <li><a class = "navlink {% if request.path == '/' %}active{% endif %}"
-                    href = '/'>Home</a></li>
-            {# The following conditional is being used to check if a query parameter is present. If it is, do not apply
-            the supplemental CSS class. #}
-            <li><a class = "navlink {% if request.path == '/blog' and len(request.args) == 0 %}active{% endif %}"
-                    href = '/blog'>My Bloglist</a></li>
-            <li><a class = "navlink {% if request.path == '/newpost' %}active{% endif %}"
-                    href = '/newpost'>New Blog Post</a></li>
-            {# Here we are dynamically changing the navbar menu links based on if a user is logged in or not #}
-            {% if not session['user'] %}
-                <li class = 'user-navlink spacer'><a class = "navlink {% if request.path == '/login' %}active{% endif %}"
-                        href = '/login'>Login</a></li>
-                <li class = 'user-navlink'><a class = "navlink {% if request.path == '/signup' %}active{% endif %}"
-                        href = '/signup'>Signup</a></li>
-            {% else %}
-                <li class = 'user-navlink spacer'><a class = "navlink {% if request.path == '/logout' %}active{% endif %}"
-                    href = '/logout'>Logout</a></li>
-                <li class = 'user-navlink'><a class = "navlink" href= '#'>Welcome, {{ user.username }}!</a></li>
-            {% endif %}
-        </ul>
+        <nav class="main-nav">
+            <ul id = "topnav">
+                <li class = 'hamburger-menu' onclick = "openNav()"><img src = '/static/images/hamburger.svg' onerror="this.src='hamburger.png'"></li>
+                <li><a class = "navlink-main" href = '/blog'>tinyblog.io</a></li>
+                <li><a class = "navlink {% if request.path == '/' %}active{% endif %}"
+                        href = '/'>Home</a></li>
+                {# The following conditional is being used to check if a query parameter is present. If it is, do not apply
+                the supplemental CSS class. #}
+                <li><a class = "navlink {% if request.path == '/blog' and len(request.args) == 0 %}active{% endif %}"
+                        href = '/blog'>My Bloglist</a></li>
+                <li><a class = "navlink {% if request.path == '/newpost' %}active{% endif %}"
+                        href = '/newpost'>New Blog Post</a></li>
+                {# Here we are dynamically changing the navbar menu links based on if a user is logged in or not #}
+                {% if not session['user'] %}
+                    <li class = 'user-navlink spacer'><a class = "navlink {% if request.path == '/login' %}active{% endif %}"
+                            href = '/login'>Login</a></li>
+                    <li class = 'user-navlink'><a class = "navlink {% if request.path == '/signup' %}active{% endif %}"
+                            href = '/signup'>Signup</a></li>
+                {% else %}
+                    <li class = 'user-navlink spacer'><a class = "navlink {% if request.path == '/logout' %}active{% endif %}"
+                        href = '/logout'>Logout</a></li>
+                    <li class = 'user-navlink'><a class = "navlink" href= '#'>Welcome, {{ user.username }}!</a></li>
+                {% endif %}
+            </ul>
+        </nav>
         <div id = "sidenav" class = "sidenav">
             <div class = "navlink-wrapper">
                 <div class="closebtn" onclick="closeNav()">&times;</div>
@@ -55,6 +57,18 @@
             </div>
         <div id = "overlay" class = "overlay" onclick = "closeNav()"></div>
         <div id = "main">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div id="fm-container">
+                        <ul id="flash-container" class="flash-container">
+                        {% for category, message in messages %}
+                            <li class="flash-{{category}}">{{ message }}</li>
+                        {% endfor %}
+                        <img id="close-flash" src="/static/images/close-btn.png">
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endwith %}
             {% block content %}
             {% endblock %}
         </div>

@@ -30,7 +30,7 @@
     height: 180px;
     flex-basis: 180px;
     border-radius: 1000px;
-    transition: background 275ms cubic-bezier(.5, .08 ,0 ,1);;
+    transition: background 375ms cubic-bezier(.5, .08 ,0 ,1);;
 }
 
 .user-initial {
@@ -46,7 +46,7 @@
     font-size: 5em;
     font-weight: 700;
     color: white;
-    transition: filter 275ms cubic-bezier(.5, .08 ,0 ,1);
+    transition: filter 375ms cubic-bezier(.5, .08 ,0 ,1);
 }
 
 .no-underline {
@@ -62,7 +62,7 @@
     flex-direction: column;
     justify-content: center;
     opacity: 0;
-    transition: opacity 275ms cubic-bezier(.5, .08 ,0 ,1);
+    transition: opacity 375ms cubic-bezier(.5, .08 ,0 ,1);
 }
 
 hr.userlink-separator {

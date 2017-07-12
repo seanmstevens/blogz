@@ -115,6 +115,14 @@ function blurLetter() {
     };
 };
 
+function dismissFlash() {
+    var closebtn = document.getElementById('close-flash')
+    var container = document.getElementById('fm-container')
+    closebtn.onclick = function () {
+        container.style.height = "0";
+    };
+};
+
 function addLoadEvent(func) {
     var oldonload = window.onload;
     if (typeof window.onload != 'function') {
@@ -132,4 +140,5 @@ function addLoadEvent(func) {
 addLoadEvent(userBoxColor)
 addLoadEvent(blurLetter);
 addLoadEvent(charCounter);
+addLoadEvent(dismissFlash);
 addLoadEvent(expandList);

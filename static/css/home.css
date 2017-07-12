@@ -37,8 +37,8 @@
     -ms-flex-preferred-size: 180px;
         flex-basis: 180px;
     border-radius: 1000px;
-    -webkit-transition: background 275ms cubic-bezier(.5, .08 ,0 ,1);
-    transition: background 275ms cubic-bezier(.5, .08 ,0 ,1);;
+    -webkit-transition: background 375ms cubic-bezier(.5, .08 ,0 ,1);
+    transition: background 375ms cubic-bezier(.5, .08 ,0 ,1);;
 }
 
 .user-initial {
@@ -60,10 +60,10 @@
     font-size: 5em;
     font-weight: 700;
     color: white;
-    -webkit-transition: -webkit-filter 275ms cubic-bezier(.5, .08 ,0 ,1);
-    transition: -webkit-filter 275ms cubic-bezier(.5, .08 ,0 ,1);
-    transition: filter 275ms cubic-bezier(.5, .08 ,0 ,1);
-    transition: filter 275ms cubic-bezier(.5, .08 ,0 ,1), -webkit-filter 275ms cubic-bezier(.5, .08 ,0 ,1);
+    -webkit-transition: -webkit-filter 375ms cubic-bezier(.5, .08 ,0 ,1);
+    transition: -webkit-filter 375ms cubic-bezier(.5, .08 ,0 ,1);
+    transition: filter 375ms cubic-bezier(.5, .08 ,0 ,1);
+    transition: filter 375ms cubic-bezier(.5, .08 ,0 ,1), -webkit-filter 375ms cubic-bezier(.5, .08 ,0 ,1);
 }
 
 .no-underline {
@@ -86,8 +86,8 @@
         -ms-flex-pack: center;
             justify-content: center;
     opacity: 0;
-    -webkit-transition: opacity 275ms cubic-bezier(.5, .08 ,0 ,1);
-    transition: opacity 275ms cubic-bezier(.5, .08 ,0 ,1);
+    -webkit-transition: opacity 375ms cubic-bezier(.5, .08 ,0 ,1);
+    transition: opacity 375ms cubic-bezier(.5, .08 ,0 ,1);
 }
 
 hr.userlink-separator {
