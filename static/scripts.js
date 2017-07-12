@@ -73,7 +73,13 @@ function userBoxColor() {
                   {color:'#e74c3c', shadow:'#912a1f'},
                   {color:'#bdc3c7', shadow:'#72777a'},
                   {color:'#2ecc71', shadow:'#16713d'},
-                  {color:'#16a085', shadow:'#0d6756'}
+                  {color:'#16a085', shadow:'#0d6756'},
+                  {color:'#e91e63', shadow:'#87123a'},
+                  {color:'#8bc34a', shadow:'#4f7326'},
+                  {color:'#673ab7', shadow:'#381b6b'},
+                  {color:'#00bcd4', shadow:'#026c79'},
+                  {color:'#795548', shadow:'#462f27'},
+                  {color:'#607d8b', shadow:'#3b4e58'},
     ]
     var shadowGen = function(color, slen) {
         shadow = ''

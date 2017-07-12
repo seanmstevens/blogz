@@ -11,7 +11,7 @@
     </head>
     <body>
         <ul id = "topnav">
-            <li class = 'hamburger-menu' onclick = "openNav()"><img src = '/static/images/hamburger.png'></li>
+            <li class = 'hamburger-menu' onclick = "openNav()"><img src = '/static/images/hamburger.svg' onerror="this.src='hamburger.png'"></li>
             <li><a class = "navlink-main" href = '/blog'>tinyblog.io</a></li>
             <li><a class = "navlink {% if request.path == '/' %}active{% endif %}"
                     href = '/'>Home</a></li>
@@ -25,6 +25,8 @@
             {% if not session['user'] %}
                 <li class = 'user-navlink spacer'><a class = "navlink {% if request.path == '/login' %}active{% endif %}"
                         href = '/login'>Login</a></li>
+                <li class = 'user-navlink'><a class = "navlink {% if request.path == '/signup' %}active{% endif %}"
+                        href = '/signup'>Signup</a></li>
             {% else %}
                 <li class = 'user-navlink spacer'><a class = "navlink {% if request.path == '/logout' %}active{% endif %}"
                     href = '/logout'>Logout</a></li>

@@ -1,6 +1,7 @@
 from flask import request, redirect, render_template, session, flash
 from app import app, db
 from models import Blog, User
+from hashutils import check_pw_hash
 import random
 
 @app.before_request
@@ -47,7 +48,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
-        if user and password == user.password:
+        if user and check_pw_hash(password, user.pw_hash):
             session['user'] = username
             flash('Welcome back, ' + username + '!', 'confirmation')
             return redirect('/blog')

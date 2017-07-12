@@ -1,6 +1,6 @@
 import hashlib
-import random
 import string
+import random
 
 def make_pw_hash(password, salt=None):
     if not salt:
