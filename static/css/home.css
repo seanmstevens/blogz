@@ -1,14 +1,27 @@
+.flex-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 100%;
+}
+
 .flex-container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    margin: auto;
+    margin: auto 0;
     padding-top: 35px;
     width: 80%;
     -ms-flex-pack: distribute;
         justify-content: space-around;
-    -ms-flex-line-pack: start;
-        align-content: flex-start;
+    -ms-flex-line-pack: center;
+        align-content: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
 }

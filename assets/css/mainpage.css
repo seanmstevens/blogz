@@ -165,8 +165,8 @@ hr.menu-line {
 
 .side-navlink, .hublink {
     font-weight: 500;
-    display: block;
-    padding: 8px 16px;
+    display: inline-block;
+    padding: 6px 4px 8px 16px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;

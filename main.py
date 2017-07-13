@@ -50,6 +50,7 @@ def login():
         user = User.query.filter_by(username=username).first()
 
         usererror = verifyutils.check_username_login(user)
+        passerror = ""
 
         if not check_pw_hash(password, user.pw_hash):
             passerror = "That password is incorrect."
@@ -121,27 +122,36 @@ def logout():
 @app.route('/blog')
 def bloglist():
     blog_id = request.args.get('id')
+    user_id = request.args.get('user')
+    print(user_id)
 
-    if not blog_id:
+    if not blog_id and not user_id:
         return render_template('bloglist.html',
                                title='Bloglist',
                                blogs=get_blogs(),
                                user=get_user(),)
-
-    blog = Blog.query.get(blog_id)
-    pubmonth = blog.pubdate.strftime('%b')
-    pubdate = blog.pubdate.strftime('%d')
-    pubtime = blog.pubdate.strftime('%I:%M %p')
-    return render_template('blog.html',
-                            title=blog.title,
-                            pubmonth=pubmonth,
-                            pubdate=pubdate,
-                            pubtime=pubtime,
-                            author=blog.owner.username,
-                            blog_title=blog.title,
-                            blog_body=blog.body,
-                            blogs=get_blogs(),
-                            user=get_user(),)
+    elif blog_id:
+        blog = Blog.query.get(blog_id)
+        pubdatetime = ""
+        pubmonth = blog.pubdate.strftime('%b')
+        pubdate = blog.pubdate.strftime('%d')
+        pubtime = blog.pubdate.strftime('%I:%M %p')
+        return render_template('blog.html',
+                                title=blog.title,
+                                pubmonth=pubmonth,
+                                pubdate=pubdate,
+                                pubtime=pubtime,
+                                author=blog.owner.username,
+                                blog_title=blog.title,
+                                blog_body=blog.body,
+                                blogs=get_blogs(),
+                                user=get_user(),)
+    else:
+        blogs = Blog.query.filter_by(owner_id=user_id).order_by(Blog.pubdate.desc()).all()
+        return render_template('bloglist.html',
+                               title='Bloglist',
+                               blogs=blogs,
+                               user=get_user(),)
 
 
 @app.route('/newpost', methods = ['POST', 'GET'])
