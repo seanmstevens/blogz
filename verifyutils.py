@@ -4,7 +4,7 @@ def check_username_signup(username, user):
     errors = []
     if user:
         errors.append("That user already exists.")
-    
+
     if not username:
         errors.append("You cannot leave this field blank.")
 
@@ -37,14 +37,5 @@ def check_verify_signup(verify, password):
 
     if verify != password:
         errors.append("Your passwords do not match.")
-
-    return errors
-
-#### LOGIN INPUT VERIFICATION UTILITIES ####
-
-def check_username_login(user):
-    errors = []
-    if not user:
-        errors.append("That user doesn't exist yet.")
 
     return errors

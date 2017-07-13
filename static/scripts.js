@@ -56,7 +56,7 @@ function expandList() {
     link.onclick = function() {
         count += 1;
         if (count % 2 === 1) {
-            list.style.height = boxHeight + "px";
+            list.style.height = boxHeight + 1 + "px";
         } else {
             list.style.height = "0";
         };

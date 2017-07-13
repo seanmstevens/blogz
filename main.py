@@ -48,9 +48,16 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
+        usererror = passerror = ""
 
-        usererror = verifyutils.check_username_login(user)
-        passerror = ""
+        if not user:
+            usererror = "That user doesn't exist yet."
+            return render_template('login.html',
+                                   title='Login',
+                                   user=get_user(),
+                                   username=username,
+                                   usererror=usererror,
+                                   blogs=get_blogs(),)
 
         if not check_pw_hash(password, user.pw_hash):
             passerror = "That password is incorrect."
