@@ -27,7 +27,7 @@
                     <li class = 'user-navlink spacer'><a class = "navlink {% if request.path == '/login' %}active{% endif %}"
                             href = '/login'>Login</a></li>
                     <li class = 'user-navlink'><a class = "navlink {% if request.path == '/signup' %}active{% endif %}"
-                            href = '/signup'>Signup</a></li>
+                            href = '/signup'>Sign up</a></li>
                 {% else %}
                     <li class = 'user-navlink spacer'><a class = "navlink {% if request.path == '/logout' %}active{% endif %}"
                         href = '/logout'>Logout</a></li>
@@ -40,13 +40,13 @@
                 <div class="closebtn" onclick="closeNav()">&times;</div>
                 <hr class = "menu-line">
                 {% if not session['user'] %}
-                    <a href="/login" class="hublink">Login</a>
+                    <a href="/login" class="hublink">Login</a><br>
                 {% endif %}
-                <a href="/blog" class="hublink">Bloglist</a>
-                <a href="javascript:void(0)" id = "entries-link" class="hublink">Entries</a>
+                <a href="/blog" class="hublink">Bloglist</a><br>
+                <a href="javascript:void(0)" id="entries-link" class="hublink">Entries</a>
                 <div id = "expanding-list">
                     {% for blog in blogs %}
-                        <a class="side-navlink" href='/blog?id={{ blog.id }}'>{{ blog.title }}</a></li>
+                        <a class="side-navlink" href='/blog?id={{ blog.id }}'>{{ blog.title }}</a><br>
                     {% endfor %}
                 </div>
                 <a href="/newpost" class="hublink">New Post</a>
@@ -60,12 +60,12 @@
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     <div id="fm-container">
-                        <ul id="flash-container" class="flash-container">
                         {% for category, message in messages %}
-                            <li class="flash-{{category}}">{{ message }}</li>
+                            <ul id="flash-container" class="flash-container-{{ category }}">
+                                <li class="flash">{{ message }}</li>
+                            </ul>
                         {% endfor %}
                         <img id="close-flash" src="/static/images/close-btn.png">
-                        </ul>
                     </div>
                 {% endif %}
             {% endwith %}

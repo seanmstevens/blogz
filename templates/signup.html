@@ -9,12 +9,33 @@
                         <h1>Sign up</h1>
                         <hr>
                         <form method = 'POST'>
-                            <input class = 'signup-field {% if usererror %}error-border{% endif %}'
-                            type = 'text' placeholder = 'Username' name = 'username'/>
-                            <input class = 'signup-field {% if passerror %}error-border{% endif %}'
-                            type = 'password' placeholder = 'Password' name = 'password'/>
-                            <input class = 'signup-field {% if verifyerror %}error-border{% endif %}'
-                            type = 'password' placeholder = 'Verify Password' name = 'verify'/>
+                            <input class = 'signup-field {% if usererrors %}error-border{% endif %}'
+                            type = 'text' placeholder = 'Username' name = 'username' value='{{ username }}'>
+                            {% if usererrors %}
+                                {% for error in usererrors %}
+                                    <span class='error'>
+                                        {{ error }}
+                                    </span>
+                                {% endfor %}
+                            {% endif %}
+                            <input class = 'signup-field {% if passerrors %}error-border{% endif %}'
+                            type = 'password' placeholder = 'Password' name = 'password'>
+                            {% if passerrors %}
+                                {% for error in passerrors %}
+                                    <span class='error'>
+                                        {{ error }}
+                                    </span>
+                                {% endfor %}
+                            {% endif %}
+                            <input class = 'signup-field {% if verifyerrors %}error-border{% endif %}'
+                            type = 'password' placeholder = 'Verify Password' name = 'verify'>
+                            {% if verifyerrors %}
+                                {% for error in verifyerrors %}
+                                    <span class='error'>
+                                        {{ error }}
+                                    </span>
+                                {% endfor %}
+                            {% endif %}
                             <input class = "submit-button" type = 'submit' value = "Sign up"/>
                         </form>
                     </div>

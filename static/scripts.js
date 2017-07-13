@@ -116,10 +116,12 @@ function blurLetter() {
 };
 
 function dismissFlash() {
-    var closebtn = document.getElementById('close-flash')
-    var container = document.getElementById('fm-container')
-    closebtn.onclick = function () {
-        container.style.height = "0";
+    if (document.getElementById('fm-container')) {
+        var closebtn = document.getElementById('close-flash')
+        var container = document.getElementById('fm-container')
+        closebtn.onclick = function () {
+            container.style.height = "0";
+        };
     };
 };
 
@@ -140,5 +142,5 @@ function addLoadEvent(func) {
 addLoadEvent(userBoxColor)
 addLoadEvent(blurLetter);
 addLoadEvent(charCounter);
-addLoadEvent(dismissFlash);
 addLoadEvent(expandList);
+addLoadEvent(dismissFlash);

@@ -2,6 +2,7 @@ from flask import request, redirect, render_template, session, flash
 from app import app, db
 from models import Blog, User
 from hashutils import check_pw_hash
+import verifyutils
 import random
 
 @app.before_request
@@ -32,13 +33,12 @@ def get_posts():
 @app.route('/')
 def index():
     users = User.query.all()
-    blogs = get_blogs()
     return render_template('index.html',
                            title="Home",
                            users=users,
-                           blogs=blogs,
+                           blogs=get_blogs(),
                            user=get_user(),
-                           posts=get_posts())
+                           posts=get_posts(),)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -48,22 +48,29 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
-        if user and check_pw_hash(password, user.pw_hash):
-            session['user'] = username
-            flash('Welcome back, ' + username + '!', 'confirmation')
-            return redirect('/blog')
 
-        # TODO - Implement Input Validation
+        usererror = verifyutils.check_username_login(user)
 
-        elif not user:
-            flash('That username does not yet exist.', 'error')
+        if not check_pw_hash(password, user.pw_hash):
+            passerror = "That password is incorrect."
 
-        else:
-            flash('That password is incorrect.', 'error')
+        if any([usererror, passerror]):
+            return render_template('login.html',
+                                   title='Login',
+                                   user=get_user(),
+                                   username=username,
+                                   usererror=usererror,
+                                   passerror=passerror,
+                                   blogs=get_blogs(),)
+
+        session['user'] = username
+        flash('Welcome back, ' + username + '!', 'confirmation')
+        return redirect('/blog')
 
     return render_template('login.html',
                            title='Login',
-                           user=get_user())
+                           user=get_user(),
+                           blogs=get_blogs(),)
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -78,7 +85,19 @@ def signup():
 
         user = User.query.filter_by(username=username).first()
 
-        # TODO - Implement input validation
+        usererrors = verifyutils.check_username_signup(username, user)
+        passerrors = verifyutils.check_password_signup(password)
+        verifyerrors = verifyutils.check_verify_signup(verify, password)
+
+        if any([usererrors, passerrors, verifyerrors]):
+            return render_template('signup.html',
+                                   title='Signup',
+                                   user=get_user(),
+                                   username=username,
+                                   usererrors=usererrors,
+                                   passerrors=passerrors,
+                                   verifyerrors=verifyerrors,
+                                   blogs=get_blogs(),)
 
         if not user:
             new_user = User(username, password)
@@ -89,23 +108,24 @@ def signup():
 
     return render_template('signup.html',
                            title='Signup',
-                           user=get_user())
+                           user=get_user(),
+                           blogs=get_blogs(),)
+
 
 @app.route('/logout')
 def logout():
     del session['user']
-    return redirect('/blog')
+    return redirect('/login')
 
 
 @app.route('/blog')
 def bloglist():
     blog_id = request.args.get('id')
-    blogs = Blog.query.order_by(Blog.pubdate.desc()).all()
 
     if not blog_id:
         return render_template('bloglist.html',
                                title='Bloglist',
-                               blogs=blogs,
+                               blogs=get_blogs(),
                                user=get_user(),)
 
     blog = Blog.query.get(blog_id)
@@ -120,7 +140,7 @@ def bloglist():
                             author=blog.owner.username,
                             blog_title=blog.title,
                             blog_body=blog.body,
-                            blogs=blogs,
+                            blogs=get_blogs(),
                             user=get_user(),)
 
 
