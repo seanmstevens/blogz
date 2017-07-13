@@ -115,6 +115,15 @@ function blurLetter() {
     };
 };
 
+function shrinkName() {
+    var userlinks = document.getElementsByClassName('userlink');
+    for (let i = 0; i < userlinks.length; i++) {
+        if (userlinks[i].innerHTML.length > 10) {
+            userlinks[i].style.fontSize = (-1.95 * userlinks[i].innerHTML.length + 46) + "px";
+        };
+    };
+};
+
 function dismissFlash() {
     if (document.getElementById('fm-container')) {
         var closebtn = document.getElementById('close-flash')
@@ -143,4 +152,5 @@ addLoadEvent(userBoxColor)
 addLoadEvent(blurLetter);
 addLoadEvent(charCounter);
 addLoadEvent(expandList);
+addLoadEvent(shrinkName);
 addLoadEvent(dismissFlash);
