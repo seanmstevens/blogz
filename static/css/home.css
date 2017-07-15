@@ -41,7 +41,7 @@
     border-radius: 1000px;
     text-align: center;
     margin: 15px;
-    background: var(--material-blue);
+    background: #03a9f4;
 }
 
 .user-box-overlay {

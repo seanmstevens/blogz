@@ -5,7 +5,7 @@ from models import Blog, User
 from hashutils import check_pw_hash
 import verifyutils
 from config import POSTS_PER_PAGE
-import time
+# import time
 
 @app.before_request
 def require_login():
@@ -209,7 +209,7 @@ def newpost():
 #     user = get_user()
 #     for i in range(10):
 #         db.session.add(Blog('TestBlog ' + str(i), 'THIS IS JUST A TEST DONT WORRY ABOUT IT', user))
-#         time.sleep(1)
+#         time.sleep(0.2)
 #         db.session.commit()
 #     return redirect('/blog')
 ### END TESTING ###
