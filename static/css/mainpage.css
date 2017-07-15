@@ -3,14 +3,15 @@
 :root {
     --material-blue: #03a9f4;
     --material-red: #f44336;
+    --material-green: #8bc34a;
 }
 
 ::-moz-selection {
-    background-color: var(--material-blue);
+    background-color: #03a9f4;
 }
 
 ::selection {
-    background-color: var(--material-blue);
+    background-color: #03a9f4;
 }
 
 body, html {
@@ -102,7 +103,7 @@ a.navlink::after, a.active::after {
     top: 18px;
     content: '';
     height: 3px;
-    background: var(--material-blue);
+    background: #03a9f4;
 }
 
 a.navlink::after {
@@ -144,7 +145,7 @@ a.navlink-main.white {
     left: 0;
     background-color: #efefef;
     overflow-x: hidden;
-    border-right: 0 solid var(--material-blue);
+    border-right: 0 solid #03a9f4;
     -webkit-transform: translate(-100%);
             transform: translate(-100%);
     -webkit-transition: 275ms cubic-bezier(.5, .08 ,0 ,1);
@@ -204,7 +205,7 @@ hr.menu-line {
     height: 0;
     margin-left: 20px;
     overflow-y: hidden;
-    border-left: 3px solid var(--material-blue);
+    border-left: 3px solid #03a9f4;
     -webkit-transition: 275ms cubic-bezier(.5,.08,0,1);
     transition: 275ms cubic-bezier(.5,.08,0,1);
 }
@@ -228,7 +229,7 @@ hr.menu-line {
     padding: 8px 0;
     -webkit-transform: translate(-100%);
             transform: translate(-100%);
-    background: var(--material-blue);
+    background: #03a9f4;
     -webkit-transition: -webkit-transform 275ms cubic-bezier(.5,.08,0,1);
     transition: -webkit-transform 275ms cubic-bezier(.5,.08,0,1);
     transition: transform 275ms cubic-bezier(.5,.08,0,1);
@@ -272,7 +273,7 @@ hr.menu-line {
 .content-container, .new-post-container, .blog-container, .bloglist-wrapper {
     width: 930px;
     margin: 0 auto;
-    padding: 90px 0;
+    padding: 30px 0;
 }
 
 .blog-container {
@@ -286,18 +287,27 @@ hr.menu-line {
 
 .title {
     display: inline-block;
-    border-bottom: 3px dashed #c3c3c3;
-    margin-bottom: 0.2em;
+    position: relative;
+    top: 12px;
+    text-shadow: 1px 1px #ababab,
+                 2px 2px #ababab,
+                 3px 3px #ababab,
+                 4px 4px #ababab,
+                 5px 5px #ababab,
+                 6px 6px #ababab,
+                 7px 7px #ababab,
+                 8px 8px #ababab;
+    margin-bottom: 0;
     padding-bottom: 0.1em;
     font-weight: 800;
-    font-size: 3em;
+    font-size: 3.625em;
 }
 
 .entry-container {
     width: 820px;
     padding: 2% 4%;
     background: white;
-    border-left: 4px solid var(--material-blue);
+    border-left: 4px solid #03a9f4;
     margin: 25px auto;
 }
 
@@ -309,7 +319,7 @@ hr.menu-line {
     text-align: center;
     height: 80px;
     width: 80px;
-    border: 3px dashed var(--material-blue);
+    border: 3px dashed #03a9f4;
     border-radius: 1000px;
 }
 
@@ -342,6 +352,16 @@ hr.menu-line {
     top: 12px;
 }
 
+.user-bloglist-link, .user-bloglist-link:visited {
+    text-decoration: none;
+    color: #303031;
+    font-weight: bold;
+}
+
+.user-bloglist-link:hover {
+    color: #03a9f4;
+}
+
 
 .blog-title, .blog-title:visited {
     margin: 0;
@@ -368,7 +388,7 @@ hr.menu-line {
     font-size: 0.8rem;
     font-weight: 700;
     color: white;
-    background: var(--material-blue);
+    background: #03a9f4;
     border: none;
     border-bottom: 2px solid #0089c7;
     border-radius: 3px;
@@ -392,8 +412,7 @@ hr.menu-line {
 /* --- NEWPOST CSS --- */
 
 .form-container {
-    margin-top: 2em;
-    border-left: 5px solid var(--material-blue);
+    border-left: 5px solid #03a9f4;
     padding: 2em 1em;
     background-color: white;
 }
@@ -431,7 +450,7 @@ hr.menu-line {
 
 .title-input:hover, .title-input:focus,
 .blog-body-input:hover, .blog-body-input:focus {
-    border-color: var(--material-blue);
+    border-color: #03a9f4;
 }
 
 .title-input:focus, .blog-body-input:focus {
@@ -473,14 +492,14 @@ hr.menu-line {
     float: right;
     margin-top: 0;
     padding: 0.2em 0.4em;
-    border-bottom: 2px solid var(--material-blue);
+    border-bottom: 2px solid #03a9f4;
     letter-spacing: 0.05em;
     font-weight: 700;
 }
 
 .error {
     margin: 0 0 0 0.33em;
-    color: var(--material-red);
+    color: #f44336;
     font-weight: 500;
     font-size: 0.8em;
 }
@@ -499,7 +518,7 @@ p.error {
     font-size: 2.5rem;
     height: 100px;
     width: 100px;
-    border: 4px dashed var(--material-blue);
+    border: 4px dashed #03a9f4;
 }
 
 .pub-month.large {
@@ -517,8 +536,7 @@ p.error {
     overflow: hidden;
 }
 
-.flash-container {
-    background: var(--material-red);
+.flash-container-error, .flash-error-confirmation {
     list-style: none;
     padding: 8px 0;
     margin: 0;
@@ -526,7 +544,15 @@ p.error {
     overflow: hidden;
 }
 
-.flash-error {
+.flash-container-error {
+    background: #f44336;
+}
+
+.flash-container-confirmation {
+    background: var(--material-green);
+}
+
+.flash {
     margin-left: 30px;
     font-size: 0.9em;
     color: white;

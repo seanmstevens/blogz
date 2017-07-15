@@ -130,7 +130,6 @@ def logout():
 def bloglist():
     blog_id = request.args.get('id')
     user_id = request.args.get('user')
-    print(user_id)
 
     if not blog_id and not user_id:
         return render_template('bloglist.html',
@@ -139,26 +138,17 @@ def bloglist():
                                user=get_user(),)
     elif blog_id:
         blog = Blog.query.get(blog_id)
-        pubdatetime = ""
-        pubmonth = blog.pubdate.strftime('%b')
-        pubdate = blog.pubdate.strftime('%d')
-        pubtime = blog.pubdate.strftime('%I:%M %p')
         return render_template('blog.html',
                                 title=blog.title,
-                                pubmonth=pubmonth,
-                                pubdate=pubdate,
-                                pubtime=pubtime,
-                                author=blog.owner.username,
-                                blog_title=blog.title,
-                                blog_body=blog.body,
+                                blog=blog,
                                 blogs=get_blogs(),
                                 user=get_user(),)
-    else:
-        blogs = Blog.query.filter_by(owner_id=user_id).order_by(Blog.pubdate.desc()).all()
-        return render_template('bloglist.html',
-                               title='Bloglist',
-                               blogs=blogs,
-                               user=get_user(),)
+
+    blogs = Blog.query.filter_by(owner_id=user_id).order_by(Blog.pubdate.desc()).all()
+    return render_template('bloglist.html',
+                            title='Bloglist',
+                            blogs=blogs,
+                            user=get_user(),)
 
 
 @app.route('/newpost', methods = ['POST', 'GET'])
@@ -190,16 +180,16 @@ def newpost():
             db.session.commit()
             blog_id = new_blog.id
             return redirect('/blog?id={0}'.format(blog_id))
-        else:
-            return render_template('newpost.html',
-                                   title='New Blog Post',
-                                   blog_body=blog_body,
-                                   blog_title=blog_title,
-                                   title_error=title_error,
-                                   body_error=body_error,
-                                   placeholder=placeholder,
-                                   blogs=blogs,
-                                   user=user,)
+
+        return render_template('newpost.html',
+                                title='New Blog Post',
+                                blog_body=blog_body,
+                                blog_title=blog_title,
+                                title_error=title_error,
+                                body_error=body_error,
+                                placeholder=placeholder,
+                                blogs=blogs,
+                                user=user,)
 
     return render_template('newpost.html',
                            title='New Blog Post',

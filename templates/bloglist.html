@@ -12,7 +12,11 @@
                             </div>
                             <div class = "blog-details break">
                                 <a class = "blog-title" href = '/blog?id={{ blog.id }}'>{{ blog.title }}</a>
-                                <p class = "pub-time">Published by {{ blog.owner.username }} at {{ blog.pubdate.strftime('%I:%M%p') }}</p>
+                                <p class = "pub-time">
+                                    Published by <a class="user-bloglist-link" href="/blog?user={{ blog.owner_id }}">
+                                        {{ blog.owner.username }}</a> 
+                                        at {{ blog.pubdate.strftime('%I:%M%p') }}
+                                </p>
                             </div>
                             <p class = "blog-body" >{{ blog.body }}</p>
                             <a class = "goto-entry-button" href = '/blog?id={{ blog.id }}'>READ MORE</a>
