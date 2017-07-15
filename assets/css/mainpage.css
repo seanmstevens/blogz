@@ -21,7 +21,7 @@ body, html {
 
 hr.separator {
     margin: 45px auto;
-    border: 2px dashed #c3c3c3;
+    border: 2px dashed #bdc3c7;
 }
 
 h1, h2, h3, strong {
@@ -261,11 +261,11 @@ hr.menu-line {
 
 .title {
     display: inline-block;
-    border-bottom: 3px dashed #c3c3c3;
     margin-bottom: 0.2em;
     padding-bottom: 0.1em;
     font-weight: 800;
-    font-size: 3em;
+    font-size: 3.625em;
+    text-shadow: 1px 1px #bdc3c7;
 }
 
 .entry-container {

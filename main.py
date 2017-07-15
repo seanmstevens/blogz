@@ -5,6 +5,7 @@ from models import Blog, User
 from hashutils import check_pw_hash
 import verifyutils
 from config import POSTS_PER_PAGE
+import time
 
 @app.before_request
 def require_login():
@@ -134,10 +135,11 @@ def bloglist(page=1):
     user_id = request.args.get('user')
 
     if user_id:
-        blogs = Blog.query.filter_by(owner_id=user_id).order_by(Blog.pubdate.desc()).all()
+        blogs = Blog.query.filter_by(owner_id=user_id).order_by(Blog.pubdate.desc())
         return render_template('bloglist.html',
                                title='Bloglist',
-                               blogs=blogs,
+                               blogs=get_blogs(),
+                               page_blogs=blogs.paginate(page, POSTS_PER_PAGE, False),
                                user=get_user(),)
 
     if blog_id:
@@ -200,6 +202,17 @@ def newpost():
                            placeholder=placeholder,
                            blogs=blogs,
                            user=user,)
+
+### FOR TESTING PURPOSES ONLY ###
+# @app.route('/build-blogs')
+# def genBlogs():
+#     user = get_user()
+#     for i in range(10):
+#         db.session.add(Blog('TestBlog ' + str(i), 'THIS IS JUST A TEST DONT WORRY ABOUT IT', user))
+#         time.sleep(1)
+#         db.session.commit()
+#     return redirect('/blog')
+### END TESTING ###
 
 
 if __name__ == '__main__':
