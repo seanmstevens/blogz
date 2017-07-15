@@ -51,12 +51,12 @@ function expandList() {
     var list = document.getElementById('expanding-list');
     var link = document.getElementById('entries-link');
     var linkQuanity = document.querySelectorAll('#expanding-list .side-navlink').length;
-    var boxHeight = linkQuanity * 33;
+    var boxHeight = linkQuanity * 33 + linkQuanity * 2;
     var count = 0;
     link.onclick = function() {
         count += 1;
         if (count % 2 === 1) {
-            list.style.height = boxHeight + 1 + "px";
+            list.style.height = boxHeight - 4 + "px";
         } else {
             list.style.height = "0";
         };

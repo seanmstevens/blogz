@@ -4,12 +4,13 @@
         <title>{{ title }} | tinyblog.io</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link type="text/css" href="static/css/mainpage.css" rel="stylesheet">
+        <link type="text/css" href="{{ url_for('static', filename='css/mainpage.css') }}" rel="stylesheet">
         {% block head %}
         {% endblock %}
-        <script type="text/javascript" src="static/scripts.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}"></script>
     </head>
     <body>
+        <!-- TODO: Flexify topnav -->
         <nav class="main-nav">
             <ul id = "topnav">
                 <li class = 'hamburger-menu' onclick = "openNav()"><img src = '/static/images/hamburger.svg' onerror="this.src='hamburger.png'"></li>

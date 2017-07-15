@@ -1,9 +1,10 @@
+import random
 from flask import request, redirect, render_template, session, flash
 from app import app, db
 from models import Blog, User
 from hashutils import check_pw_hash
 import verifyutils
-import random
+from config import POSTS_PER_PAGE
 
 @app.before_request
 def require_login():
@@ -20,7 +21,7 @@ def get_user():
     return current_user
 
 def get_blogs():
-    blogs = Blog.query.order_by(Blog.pubdate.desc()).all()
+    blogs = Blog.query.order_by(Blog.pubdate.desc())
     return blogs
 
 def get_posts():
@@ -127,28 +128,31 @@ def logout():
 
 
 @app.route('/blog')
-def bloglist():
+@app.route('/blog/<int:page>')
+def bloglist(page=1):
     blog_id = request.args.get('id')
     user_id = request.args.get('user')
 
-    if not blog_id and not user_id:
+    if user_id:
+        blogs = Blog.query.filter_by(owner_id=user_id).order_by(Blog.pubdate.desc()).all()
         return render_template('bloglist.html',
                                title='Bloglist',
-                               blogs=get_blogs(),
+                               blogs=blogs,
                                user=get_user(),)
-    elif blog_id:
+
+    if blog_id:
         blog = Blog.query.get(blog_id)
         return render_template('blog.html',
-                                title=blog.title,
-                                blog=blog,
-                                blogs=get_blogs(),
-                                user=get_user(),)
+                               title=blog.title,
+                               blog=blog,
+                               blogs=get_blogs(),
+                               user=get_user(),)
 
-    blogs = Blog.query.filter_by(owner_id=user_id).order_by(Blog.pubdate.desc()).all()
     return render_template('bloglist.html',
-                            title='Bloglist',
-                            blogs=blogs,
-                            user=get_user(),)
+                           title='Bloglist',
+                           blogs=get_blogs(),
+                           page_blogs=get_blogs().paginate(page, POSTS_PER_PAGE, False),
+                           user=get_user(),)
 
 
 @app.route('/newpost', methods = ['POST', 'GET'])

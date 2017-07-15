@@ -4,7 +4,7 @@
             <div class = "content-container">
                 <h1 class = "title" >My Bloglist</h1>
                 <div class = "bloglist-wrapper">
-                    {% for blog in blogs %}
+                    {% for blog in page_blogs.items %}
                         <div class = "entry-container">
                             <div class = "date-bubble">
                                 <p class = "pub-month">{{ blog.pubdate.strftime('%b') }}</p>
@@ -22,10 +22,18 @@
                             <a class = "goto-entry-button" href = '/blog?id={{ blog.id }}'>READ MORE</a>
                         </div>
                         {# The following conditional will not add a row separator after the last blog entry #}
-                        {% if blogs.index(blog) != (len(blogs) - 1) %}
+                        {% if page_blogs.items.index(blog) != (len(page_blogs.items) - 1) %}
                             <hr class = "separator">
                         {% endif %}
                     {% endfor %}
                 </div>
+            </div>
+            <div class='pagination-container'>
+                {% if page_blogs.has_next %}
+                    <a href="{{ url_for('bloglist', page=page_blogs.next_num) }}">Older posts</a>
+                {% endif %}
+                {% if page_blogs.has_prev %}
+                    <a href="{{ url_for('bloglist', page=page_blogs.prev_num) }}">Newer posts</a>
+                {% endif %}
             </div>
 {% endblock %}
