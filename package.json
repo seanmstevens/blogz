@@ -10,14 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/seanmstevens/blogz.git"
   },
-  "author": "",
+  "author": "Sean Stevens",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/seanmstevens/blogz/issues"
   },
   "homepage": "https://github.com/seanmstevens/blogz#readme",
   "devDependencies": {
-    "browser-sync": "^2.18.12",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0"
   }

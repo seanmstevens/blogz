@@ -9,7 +9,7 @@
     <div class = "blog-details break">
         <h1 class = "blog-title large" >{{ blog.title }}</h1>
         <p class = "pub-time large">
-            Published by <a class="user-bloglist-link" href="/blog?user={{ blog.owner_id }}">
+            Published by <a class="user-bloglist-link" href="/blog?user={{ blog.owner.username }}">
                 {{ blog.owner.username }}</a>
              at {{ blog.pubdate.strftime('%I:%M %p') }}
         </p>

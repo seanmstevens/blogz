@@ -13,7 +13,7 @@
                             <div class = "blog-details break">
                                 <a class = "blog-title" href = '/blog?id={{ blog.id }}'>{{ blog.title }}</a>
                                 <p class = "pub-time">
-                                    Published by <a class="user-bloglist-link" href="/blog?user={{ blog.owner.id }}">
+                                    Published by <a class="user-bloglist-link" href="/blog?user={{ blog.owner.username }}">
                                         {{ blog.owner.username }}</a>
                                         at {{ blog.pubdate.strftime('%I:%M%p') }}
                                 </p>
@@ -32,7 +32,7 @@
                 {%- for page in page_blogs.iter_pages() %}
                     {% if page %}
                         {% if page != page_blogs.page %}
-                            <a href="{{ url_for('bloglist', page=page) }}">{{ page }}</a>
+                            <a href="{{ url_for('bloglist', user=request.args.get('user'), page=page) }}">{{ page }}</a>
                         {% else %}
                             <strong>{{ page }}</strong>
                         {% endif %}

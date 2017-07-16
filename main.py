@@ -5,7 +5,7 @@ from models import Blog, User
 from hashutils import check_pw_hash
 import verifyutils
 from config import POSTS_PER_PAGE
-# import time
+import time
 
 @app.before_request
 def require_login():
@@ -130,12 +130,13 @@ def logout():
 
 @app.route('/blog')
 @app.route('/blog/<int:page>')
-def bloglist(page=1):
+def bloglist(user=None, page=1):
     blog_id = request.args.get('id')
-    user_id = request.args.get('user')
+    user = request.args.get('user')
+    user_filter = User.query.filter_by(username=user).first()
 
-    if user_id:
-        blogs = Blog.query.filter_by(owner_id=user_id).order_by(Blog.pubdate.desc())
+    if user_filter:
+        blogs = Blog.query.filter_by(owner_id=user_filter.id).order_by(Blog.pubdate.desc())
         return render_template('bloglist.html',
                                title='Bloglist',
                                blogs=get_blogs(),
@@ -204,15 +205,15 @@ def newpost():
                            user=user,)
 
 ### FOR TESTING PURPOSES ONLY ###
-# @app.route('/build-blogs')
-# def genBlogs():
-#     user = get_user()
-#     for i in range(10):
-#         db.session.add(Blog('TestBlog ' + str(i), 'THIS IS JUST A TEST DONT WORRY ABOUT IT', user))
-#         time.sleep(0.2)
-#         db.session.commit()
-#     return redirect('/blog')
-### END TESTING ###
+@app.route('/build-blogs')
+def genBlogs():
+    user = get_user()
+    for i in range(20):
+        db.session.add(Blog('TestBlog ' + str(i), 'THIS IS JUST A TEST DONT WORRY ABOUT IT', user))
+        time.sleep(0.2)
+        db.session.commit()
+    return redirect('/blog') 
+### END TESTING ### 
 
 
 if __name__ == '__main__':
