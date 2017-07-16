@@ -27,7 +27,7 @@ def get_blogs():
 
 def get_posts():
     posts_dict = {}
-    users =  User.query.all()
+    users = User.query.all()
     for user in users:
         posts_dict[user] = len(Blog.query.filter_by(owner_id=user.id).all())
     return posts_dict
@@ -109,12 +109,12 @@ def signup():
                                    verifyerrors=verifyerrors,
                                    blogs=get_blogs(),)
 
-        if not user:
-            new_user = User(username, password)
-            db.session.add(new_user)
-            db.session.commit()
-            session['user'] = username
-            return redirect('/blog')
+        new_user = User(username, password)
+        db.session.add(new_user)
+        db.session.commit()
+        session['user'] = username
+        flash('Welcome to tinyblog.io, ' + username + '!', 'confirmation')
+        return redirect('/blog')
 
     return render_template('signup.html',
                            title='Signup',

@@ -126,10 +126,12 @@ function shrinkName() {
 
 function dismissFlash() {
     if (document.getElementById('fm-container')) {
-        var closebtn = document.getElementById('close-flash')
+        var closebtns = document.getElementsByClassName('close-flash-btn')
         var container = document.getElementById('fm-container')
-        closebtn.onclick = function () {
-            container.style.height = "0";
+        for (let i = 0; i < closebtns.length; i++) {
+            closebtns[i].onclick = function () {
+                closebtns[i].parentElement.style.display = "none";
+            };
         };
     };
 };

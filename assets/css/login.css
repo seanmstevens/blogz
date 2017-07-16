@@ -82,12 +82,12 @@ div.wrapper {
     position: relative;
     right: -6px;
     top: -8px;
-    color: var(--material-red);
+    color: #f44336;
     font-size: 0.8rem;
 }
 
 .error-border {
-    border-color: var(--material-red);
+    border-color: #f44336;
 }
 
 #create-msg {

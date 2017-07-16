@@ -493,7 +493,7 @@ hr.menu-line {
 
 .error {
     margin: 0 0 0 0.33em;
-    color: var(--material-red);
+    color: #f44336;
     font-weight: 500;
     font-size: 0.8em;
 }
@@ -526,28 +526,60 @@ p.error {
 /* --- FLASH MESSAGE CSS --- */
 
 .fm-container {
-    position: fixed;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    position: relative;
     overflow: hidden;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    top: 50px;
+    width: 100vw;
 }
 
-.flash-container {
-    background: var(--material-red);
+.flash-container-error, .flash-container-confirmation {
+    position: relative;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    padding: 8px 30px;
+    margin: 6px 0;
+    width: 66.67%;
     list-style: none;
-    padding: 8px 0;
-    margin: 0;
-    top: 57px;
     overflow: hidden;
-}
-
-.flash-error {
-    margin-left: 30px;
     font-size: 0.9em;
+    letter-spacing: 0.08em;
     color: white;
     font-weight: 700;
+    -webkit-transition: border 175ms cubic-bezier(.5,.08,0,1);
+    transition: border 175ms cubic-bezier(.5,.08,0,1);
 }
 
-#close-flash {
+.flash-container-error {
+    background: #e26158;
+    border-left: 0px solid #a92b21;
+}
+
+.flash-container-error:hover {
+    border-left: 10px solid #a92b21;
+}
+
+.flash-container-confirmation {
+    background: #8bc34a;
+    border-left: 0px solid #4caf50;
+}
+
+.flash-container-confirmation:hover {
+    border-left: 10px solid #4caf50;
+}
+
+.close-flash-btn {
     cursor: pointer;
-    margin-right: 30px;
     float: right;
 }

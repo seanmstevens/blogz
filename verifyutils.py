@@ -7,14 +7,14 @@ def check_username_signup(username, user):
 
     if not username:
         errors.append("You cannot leave this field blank.")
+    else:
+        if len(username) > 20:
+            errors.append("Your username needs to be shorter than 20 characters.")
+        elif len(username) < 3:
+            errors.append("Your username needs to be at least 3 characters long.")
 
-    if len(username) > 20:
-        errors.append("Your username needs to be shorter than 20 characters.")
-    elif len(username) < 3:
-        errors.append("Your username needs to be at least 3 characters long.")
-
-    if not username[0].isalpha():
-        errors.append("Your username must start with a letter.")
+        if not username[0].isalpha():
+            errors.append("Your username must start with a letter.")
 
     return errors
 
