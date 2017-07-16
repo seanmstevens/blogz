@@ -449,6 +449,7 @@ hr.menu-line {
 
 .error {
     margin: 0 0 0 0.33em;
+    display: inline-block;
     color: #f44336;
     font-weight: 500;
     font-size: 0.8em;

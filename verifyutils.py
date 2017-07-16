@@ -23,10 +23,11 @@ def check_password_signup(password):
     if not password:
         errors.append("You cannot leave this field blank.")
 
-    if len(password) > 20:
-        errors.append("Your username needs to be shorter than 20 characters.")
-    elif len(password) < 3:
-        errors.append("Your username needs to be at least 3 characters long.")
+    else:
+        if len(password) > 20:
+            errors.append("Your username needs to be shorter than 20 characters.")
+        elif len(password) < 3:
+            errors.append("Your username needs to be at least 3 characters long.")
 
     return errors
 
@@ -34,8 +35,9 @@ def check_verify_signup(verify, password):
     errors = []
     if not verify:
         errors.append("You cannot leave this field blank.")
-
-    if verify != password:
-        errors.append("Your passwords do not match.")
+    
+    else:
+        if verify != password:
+            errors.append("Your passwords do not match.")
 
     return errors
