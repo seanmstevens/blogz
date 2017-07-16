@@ -13,7 +13,7 @@
                             <div class = "blog-details break">
                                 <a class = "blog-title" href = '/blog?id={{ blog.id }}'>{{ blog.title }}</a>
                                 <p class = "pub-time">
-                                    Published by <a class="user-bloglist-link" href="/blog?user={{ blog.owner_id }}">
+                                    Published by <a class="user-bloglist-link" href="/blog?user={{ blog.owner.id }}">
                                         {{ blog.owner.username }}</a>
                                         at {{ blog.pubdate.strftime('%I:%M%p') }}
                                 </p>
