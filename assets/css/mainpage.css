@@ -248,7 +248,7 @@ hr.menu-line {
 .content-container, .new-post-container, .blog-container, .bloglist-wrapper {
     width: 930px;
     margin: 0 auto;
-    padding: 90px 0;
+    padding: 45px 0;
 }
 
 .blog-container {
@@ -261,7 +261,7 @@ hr.menu-line {
 
 .title {
     display: inline-block;
-    margin-bottom: 0;
+    margin: 0;
     padding-bottom: 0.1em;
     font-weight: 800;
     font-size: 3.625em;
@@ -489,7 +489,7 @@ p.error {
     position: relative;
     overflow: hidden;
     align-items: center;
-    top: 50px;
+    top: 30px;
     width: 100vw;
 }
 
