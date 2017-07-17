@@ -205,14 +205,14 @@ def newpost():
                            user=user,)
 
 ### FOR TESTING PURPOSES ONLY ###
-@app.route('/build-blogs')
-def genBlogs():
-    user = get_user()
-    for i in range(20):
-        db.session.add(Blog('TestBlog ' + str(i), 'THIS IS JUST A TEST DONT WORRY ABOUT IT', user))
-        time.sleep(0.2)
-        db.session.commit()
-    return redirect('/blog') 
+# @app.route('/build-blogs')
+# def genBlogs():
+#     user = get_user()
+#     for i in range(20):
+#         db.session.add(Blog('TestBlog ' + str(i), 'THIS IS JUST A TEST DONT WORRY ABOUT IT', user))
+#         time.sleep(0.2)
+#         db.session.commit()
+#     return redirect('/blog') 
 ### END TESTING ### 
 
 

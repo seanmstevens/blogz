@@ -496,7 +496,7 @@ p.error {
 .flash-container-error, .flash-container-confirmation {
     position: relative;
     box-sizing: border-box;
-    padding: 8px 30px;
+    padding: 8px 8px 8px 30px;
     margin: 6px 0;
     width: 66.67%;
     list-style: none;
@@ -505,7 +505,8 @@ p.error {
     letter-spacing: 0.08em;
     color: white;
     font-weight: 700;
-    transition: border 175ms cubic-bezier(.5,.08,0,1);
+    border-radius: 0 1000px 1000px 0;
+    transition: border 275ms cubic-bezier(.5,.08,0,1);
 }
 
 .flash-container-error {
@@ -514,7 +515,7 @@ p.error {
 }
 
 .flash-container-error:hover {
-    border-left: 10px solid #a92b21;
+    border-left: 20px solid #a92b21;
 }
 
 .flash-container-confirmation {
@@ -523,7 +524,7 @@ p.error {
 }
 
 .flash-container-confirmation:hover {
-    border-left: 10px solid #4caf50;
+    border-left: 20px solid #4caf50;
 }
 
 .close-flash-btn {

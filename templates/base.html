@@ -23,7 +23,6 @@
                         href = '/blog'>My Bloglist</a></li>
                 <li><a class = "navlink {% if request.path == '/newpost' %}active{% endif %}"
                         href = '/newpost'>New Blog Post</a></li>
-                <li><a class="navlink" href="/build-blogs">Make Test Blogs</a></li>
                 {# Here we are dynamically changing the navbar menu links based on if a user is logged in or not #}
                 {% if not session['user'] %}
                     <li class = 'user-navlink spacer'><a class = "navlink {% if request.path == '/login' %}active{% endif %}"
