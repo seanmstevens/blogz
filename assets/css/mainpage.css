@@ -531,3 +531,28 @@ p.error {
     cursor: pointer;
     float: right;
 }
+
+/**** NO BLOGS CSS ****/
+
+.no-blogs-splash {
+    display: flex;
+    width: 45%;
+    margin: 0 auto;
+    flex-direction: column;
+    align-content: space-around;
+    align-items: center;
+    border: 4px dashed #636363;
+    border-radius: 14px;
+}
+
+.no-blogs-title {
+    font-weight: 500;
+    font-size: 2em;
+    margin: 22px auto 0;
+}
+
+.no-blogs-subtitle {
+    margin: 5px auto 22px;
+    font-size: 0.9rem;
+
+}
