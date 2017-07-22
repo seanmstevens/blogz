@@ -3,7 +3,9 @@ var autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('styles', function() {
     gulp.src('assets/**/*.css')
-        .pipe(autoprefixer())
+        .pipe(autoprefixer({
+            browsers: ['last 15 versions']
+        }))
         .pipe(gulp.dest('static'));
 })
 

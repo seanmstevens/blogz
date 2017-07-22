@@ -95,7 +95,7 @@ function userBoxColor() {
     for (let i = 0; i < boxes.length; i++) {
         var idx = Math.floor(Math.random() * colors.length)
         boxes[i].style.background = colors[idx].color;
-        boxes[i].firstElementChild.firstElementChild.style.textShadow = shadowGen(colors[idx].shadow, 7);
+        boxes[i].childNodes[3].style.textShadow = shadowGen(colors[idx].shadow, 7);
     };
 };
 
@@ -103,13 +103,13 @@ function blurLetter() {
     var boxes = document.getElementsByClassName('user-box');
     for (let i = 0; i < boxes.length; i++) {
         boxes[i].onmouseover = function() {
-            this.firstElementChild.style.background = "rgba(40, 40, 40, 0.65)";
-            this.firstElementChild.firstElementChild.style.filter = "blur(8px)";
+            this.firstElementChild.style.background = "rgba(40, 40, 40, 0.30)";
+            this.childNodes[3].style.filter = "blur(8px)";
             this.getElementsByClassName('user-details')[0].style.opacity = '1';
         }
         boxes[i].onmouseout = function() {
             this.firstElementChild.style.background = "initial";
-            this.firstElementChild.firstElementChild.style.filter = "initial";
+            this.childNodes[3].style.filter = "initial";
             this.getElementsByClassName('user-details')[0].style.opacity = '0';
         };
     };
@@ -136,6 +136,36 @@ function dismissFlash() {
     };
 };
 
+///// REAL TIME FORM VALIDATION /////
+
+function validateInput(input) {
+    var errors = [];
+    if (input.value === "") {
+        errors.push("You cannot leave this field blank.");
+    } else {
+        if (input.value.length > 20) {
+            errors.push("Your username needs to be shorter than 20 characters.");
+        } else if (input.value.length < 3) {
+            errors.push("Your username needs to be at least 3 characters long.");
+        } else if (!input.value.charAt(0).match(/^[a-zA-Z]+$/))
+            errors.push("Your username must start with a letter.")
+    };
+
+    return errors
+};
+
+function errorMessaging() {
+    var inputFields = document.getElementsByClassName('signup-field');
+    for (let i = 0; i < inputFields.length; i++) {
+        inputFields[i].onclick = function() {
+            var errorMsgs = this.nextElementSibling;
+            errorMsgs.style.display = 'none';
+            this.className = this.className.replace(new RegExp('(?:^|\\s)'+ 'error-border' + '(?:\\s|$)'), '');
+        };
+        inputFields[i].onblur = validateInput(this);
+    };
+};
+
 function addLoadEvent(func) {
     var oldonload = window.onload;
     if (typeof window.onload != 'function') {
@@ -156,3 +186,4 @@ addLoadEvent(charCounter);
 addLoadEvent(expandList);
 addLoadEvent(shrinkName);
 addLoadEvent(dismissFlash);
+addLoadEvent(checkInput);

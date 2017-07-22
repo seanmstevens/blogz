@@ -1,44 +1,44 @@
 {% extends 'base.html' %}
 
 {% block content %}
-            <div class = "content-container">
-                <h1 class = "title" >
+            <div class='content-container'>
+                <h1 class='title' >
                     {% if request.args %}
                         {{ request.args.get('user') }}'s
                     {% endif %}
                     Bloglist
                 </h1>
-                <div class = "bloglist-wrapper">
+                <div class='bloglist-wrapper'>
                     {% if page_blogs.items %}
                         {% for blog in page_blogs.items %}
-                            <div class = "entry-container">
-                                <div class = "date-bubble">
-                                    <p class = "pub-month">{{ blog.pubdate.strftime('%b') }}</p>
-                                    <p class = "pub-date">{{ blog.pubdate.strftime('%d') }}</p>
+                            <div class='entry-container'>
+                                <div class='date-bubble'>
+                                    <p class='pub-month'>{{ blog.pubdate.strftime('%b') }}</p>
+                                    <p class='pub-date'>{{ blog.pubdate.strftime('%d') }}</p>
                                 </div>
-                                <div class = "blog-details break">
-                                    <a class = "blog-title" href = '/blog?id={{ blog.id }}'>{{ blog.title }}</a>
-                                    <p class = "pub-time">
-                                        Published by <a class="user-bloglist-link" href="/blog?user={{ blog.owner.username }}">
+                                <div class='blog-details break'>
+                                    <a class='blog-title' href='/blog?id={{ blog.id }}'>{{ blog.title }}</a>
+                                    <p class='pub-time'>
+                                        Published by <a class='user-bloglist-link' href='/blog?user={{ blog.owner.username }}'>
                                             {{ blog.owner.username }}</a>
                                             at {{ blog.pubdate.strftime('%I:%M%p') }}
                                     </p>
                                 </div>
-                                <p class = "blog-body" >{{ blog.body }}</p>
-                                <a class = "goto-entry-button" href = '/blog?id={{ blog.id }}'>READ MORE</a>
+                                <p class='blog-body' >{{ blog.body }}</p>
+                                <a class='goto-entry-button' href='/blog?id={{ blog.id }}'>READ MORE</a>
                             </div>
                             {# The following conditional will not add a row separator after the last blog entry #}
                             {% if page_blogs.items.index(blog) != (len(page_blogs.items) - 1) %}
-                                <hr class = "separator">
+                                <hr class='separator'>
                             {% endif %}
                         {% endfor %}
                     {% else %}
-                        <div class="no-blogs-splash">
-                            <h1 class="no-blogs-title"><em>It's pretty lonely in here...</em></h1>
+                        <div class='no-blogs-splash'>
+                            <h1 class='no-blogs-title'><em>It's pretty lonely in here...</em></h1>
                             {% if request.args.get('user') == session['user'] %}
-                                <p class="no-blogs-subtitle">Go ahead and <a href="/newpost">make one!</a></p>
+                                <p class='no-blogs-subtitle'>Go ahead and <a href='/newpost'>make one!</a></p>
                             {% else %}
-                                <p class="no-blogs-subtitle">This user doesn't have any entries yet.</p>
+                                <p class='no-blogs-subtitle'>This user doesn't have any entries yet.</p>
                             {% endif %}
                         </div>
                     {% endif %}
@@ -53,7 +53,7 @@
                             <strong>{{ page }}</strong>
                         {% endif %}
                     {% else %}
-                        <span class="ellipsis">...</span>
+                        <span class='ellipsis'>...</span>
                     {% endif %}
                 {% endfor %}
             </div>

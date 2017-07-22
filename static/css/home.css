@@ -34,8 +34,8 @@
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    width: 44%;
-    padding: 30px 1.5%;
+    width: 40%;
+    padding: 12.5px 2.5%;
     background: white;
     border-left: 5px solid #03a9f4;
 }
@@ -73,30 +73,32 @@
 }
 
 .user-box {
-    height: 165px;
-    width: 165px;
+    width: 11vw;
+    height: 11vw;
+    position: relative;
     cursor: pointer;
     border: 6px solid gainsboro;
     border-radius: 1000px;
     text-align: center;
-    margin: 15px;
+    margin: 10px;
     background: #03a9f4;
 }
 
 .user-box-overlay {
-    height: 165px;
-    -ms-flex-preferred-size: 165px;
-        flex-basis: 165px;
+    z-index: 1;
+    position: absolute;
+    height: 100%;
+    width: 100%;
     border-radius: 1000px;
     -webkit-transition: background 375ms cubic-bezier(.5, .08 ,0 ,1);
     transition: background 375ms cubic-bezier(.5, .08 ,0 ,1);;
 }
 
 .user-initial {
+    margin: 0;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    margin: 0;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -107,9 +109,9 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    height: 165px;
+    height: 100%;
     border-radius: 1000px;
-    font-size: 5em;
+    font-size: 6vw;
     font-weight: 700;
     color: white;
     -webkit-transition: -webkit-filter 375ms cubic-bezier(.5, .08 ,0 ,1);
@@ -119,17 +121,20 @@
 }
 
 .no-underline {
+    z-index: 2;
     text-decoration: none;
-    position: relative;
-    bottom: 165px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    right: 0;
 }
 
 .user-details {
-    z-index: 13;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    height: 165px;
+    height: 100%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -152,7 +157,7 @@ hr.userlink-separator {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 158px;
+    max-width: 95%;
     margin: 0 auto;
     letter-spacing: 0.1em;
     font-weight: 500;

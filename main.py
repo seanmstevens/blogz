@@ -35,9 +35,11 @@ def get_posts():
 @app.route('/')
 def index():
     users = User.query.all()
+    recent_posts = get_blogs().limit(8).all()
     return render_template('index.html',
                            title="Home",
                            users=users,
+                           recent_posts=recent_posts,
                            blogs=get_blogs(),
                            user=get_user(),
                            posts=get_posts(),)

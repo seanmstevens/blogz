@@ -1,25 +1,24 @@
 {% extends 'base.html' %}
 {% block head %}
-        <link type="text/css" href="static/css/home.css" rel="stylesheet">
+        <link type='text/css' href='static/css/home.css' rel='stylesheet'>
 {% endblock %}
 {% block content %}
         <!-- TODO: FIX THIS WHOLE SITUATION -->
         <div class='flex-wrapper'>
             <div class='flex-container'>
                 <div class='users-container'>
-                    <h1 class="homepage-title">Users</h1>
-                    <hr class="homepage-separator">
+                    <h1 class='homepage-title'>Users</h1>
+                    <hr class='homepage-separator'>
                         <div class='user-box-container'>
                         {% for user in users %}
                             <div class='user-box' id='user-box'>
-                                <div class = 'user-box-overlay'>
-                                    <p id="user-initial" class="user-initial">{{ user.username[0] }}</p>
-                                </div>
-                                <a class="no-underline" href="/blog?user={{ user.username }}">
-                                    <div class="user-details">
+                                <div class = 'user-box-overlay'></div>
+                                <p id='user-initial' class='user-initial'>{{ user.username[0] }}</p>
+                                <a class='no-underline' href='/blog?user={{ user.username }}'>
+                                    <div class='user-details'>
                                         <span class='userlink'>{{ user.username }}</span>
-                                        <hr class="userlink-separator">
-                                        <span class="posts">{{ posts[user] }}
+                                        <hr class='userlink-separator'>
+                                        <span class='posts'>{{ posts[user] }}
                                             {% if posts[user] == 1 %}
                                                 post
                                             {% else %}
@@ -31,14 +30,15 @@
                             </div>
                         {% endfor %}
                         </div>
-                    <hr class="homepage-separator">
+                    <hr class='homepage-separator'>
                 </div>
                 <div class='recent-posts-container'>
-                    <h1 class="homepage-title">Recent Posts</h1>
-                    <hr class="homepage-separator">
-                    <p>Incidunt exercitationem ab dolorum. Dolore ut aperiam sit rerum aut est voluptas. 
-                        Adipisci nihil at aut deserunt voluptate ut dignissimos sunt. Ut quia temporibus 
-                        aperiam vel et qui voluptatem in est.</p>
+                    <h1 class='homepage-title'>Recent Posts</h1>
+                    <hr class='homepage-separator'>
+                    {% for post in recent_posts %}
+                        <a class="blog-title" href='/blog?id={{ post.id }}'>{{ post.title }}</a>
+                        <p>{{ post.body }}</p>
+                    {% endfor %}
                 </div>
             </div>
         </div>

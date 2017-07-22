@@ -94,10 +94,14 @@ div.wrapper {
     background-color: #26b7f9;
 }
 
-.error {
+.error-msgs-wrapper {
     position: relative;
     right: -6px;
     top: -8px;
+    overflow: hidden;
+}
+
+.error {
     color: #f44336;
     font-size: 0.8rem;
 }
