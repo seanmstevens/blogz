@@ -118,8 +118,8 @@ function blurLetter() {
 function shrinkName() {
     var userlinks = document.getElementsByClassName('userlink');
     for (let i = 0; i < userlinks.length; i++) {
-        if (userlinks[i].innerHTML.length > 10) {
-            userlinks[i].style.fontSize = (-1.8 * userlinks[i].innerHTML.length + 46) + "px";
+        if (userlinks[i].innerHTML.length > 7) {
+            userlinks[i].style.fontSize = (-1.2 * userlinks[i].innerHTML.length + 31) + "px";
         };
     };
 };
@@ -138,31 +138,41 @@ function dismissFlash() {
 
 ///// REAL TIME FORM VALIDATION /////
 
-function validateInput(input) {
-    var errors = [];
-    if (input.value === "") {
-        errors.push("You cannot leave this field blank.");
-    } else {
-        if (input.value.length > 20) {
-            errors.push("Your username needs to be shorter than 20 characters.");
-        } else if (input.value.length < 3) {
-            errors.push("Your username needs to be at least 3 characters long.");
-        } else if (!input.value.charAt(0).match(/^[a-zA-Z]+$/))
-            errors.push("Your username must start with a letter.")
-    };
-
-    return errors
-};
-
 function errorMessaging() {
     var inputFields = document.getElementsByClassName('signup-field');
     for (let i = 0; i < inputFields.length; i++) {
+        // Dismiss error messages when focusing on input field
         inputFields[i].onclick = function() {
             var errorMsgs = this.nextElementSibling;
             errorMsgs.style.display = 'none';
             this.className = this.className.replace(new RegExp('(?:^|\\s)'+ 'error-border' + '(?:\\s|$)'), '');
         };
-        inputFields[i].onblur = validateInput(this);
+        // Add appropriate error messages when the form elements are changed by the user
+        inputFields[i].onchange = function() {
+            var errors = [];
+            if (this.value === "") {
+                errors.push("You cannot leave this field blank.");
+            } else {
+                if (this.value.length > 18) {
+                    errors.push("Your username needs to be shorter than 20 characters.");
+                } else if (this.value.length < 3) {
+                    errors.push("Your username needs to be at least 3 characters long.");
+                } else if (!this.value.charAt(0).match(/^[a-zA-Z]+$/))
+                    errors.push("Your username must start with a letter.")
+                };
+            console.log(errors)
+            if (errors) {
+                inputFields[i].className += 'error-border';
+                var errorMsgs = inputFields[i].nextElementSibling;
+                errorMsgs.style.display = 'initial';
+                for (let j = 0; j < errors.length; j++) {
+                    var errorMsg = document.createElement('span');
+                    errorMsg.appendChild(document.createTextNode(errors[j]));
+                    errorMsg.className = 'error';
+                    errorMsgs.appendChild(errorMsg);
+                };
+            };
+        };
     };
 };
 
@@ -186,4 +196,4 @@ addLoadEvent(charCounter);
 addLoadEvent(expandList);
 addLoadEvent(shrinkName);
 addLoadEvent(dismissFlash);
-addLoadEvent(checkInput);
+addLoadEvent(errorMessaging);

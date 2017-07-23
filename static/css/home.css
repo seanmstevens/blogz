@@ -1,11 +1,14 @@
 .flex-wrapper {
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
+    -webkit-justify-content: center;
         -ms-flex-pack: center;
             justify-content: center;
     -webkit-box-align: center;
+    -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
     height: 100%;
@@ -13,25 +16,31 @@
 
 .flex-container {
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     margin: auto 0;
-    padding-top: 35px;
+    padding: 55px 0;
     width: 80%;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-    -ms-flex-line-pack: center;
-        align-content: center;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    -webkit-align-content: center;
+        -ms-flex-line-pack: center;
+            align-content: center;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
 }
 
 .users-container, .recent-posts-container {
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
         -ms-flex-direction: column;
             flex-direction: column;
     width: 40%;
@@ -59,17 +68,21 @@
 /**** USERS CONTAINER ****/
 
 .user-box-container {
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
         -ms-flex-direction: row;
             flex-direction: row;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
 }
 
 .user-box {
@@ -78,7 +91,8 @@
     position: relative;
     cursor: pointer;
     border: 6px solid gainsboro;
-    border-radius: 1000px;
+    -webkit-border-radius: 1000px;
+            border-radius: 1000px;
     text-align: center;
     margin: 10px;
     background: #03a9f4;
@@ -89,20 +103,25 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    border-radius: 1000px;
+    -webkit-border-radius: 1000px;
+            border-radius: 1000px;
     -webkit-transition: background 375ms cubic-bezier(.5, .08 ,0 ,1);
+    -o-transition: background 375ms cubic-bezier(.5, .08 ,0 ,1);
     transition: background 375ms cubic-bezier(.5, .08 ,0 ,1);;
 }
 
 .user-initial {
     margin: 0;
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
+    -webkit-justify-content: center;
         -ms-flex-pack: center;
             justify-content: center;
     -webkit-box-align: center;
+    -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
     user-select: none;
@@ -110,12 +129,14 @@
     -moz-user-select: none;
     -ms-user-select: none;
     height: 100%;
-    border-radius: 1000px;
+    -webkit-border-radius: 1000px;
+            border-radius: 1000px;
     font-size: 6vw;
     font-weight: 700;
     color: white;
     -webkit-transition: -webkit-filter 375ms cubic-bezier(.5, .08 ,0 ,1);
     transition: -webkit-filter 375ms cubic-bezier(.5, .08 ,0 ,1);
+    -o-transition: filter 375ms cubic-bezier(.5, .08 ,0 ,1);
     transition: filter 375ms cubic-bezier(.5, .08 ,0 ,1);
     transition: filter 375ms cubic-bezier(.5, .08 ,0 ,1), -webkit-filter 375ms cubic-bezier(.5, .08 ,0 ,1);
 }
@@ -132,18 +153,22 @@
 
 .user-details {
     display: -webkit-box;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     height: 100%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
         -ms-flex-direction: column;
             flex-direction: column;
     -webkit-box-pack: center;
+    -webkit-justify-content: center;
         -ms-flex-pack: center;
             justify-content: center;
     opacity: 0;
     -webkit-transition: opacity 375ms cubic-bezier(.5, .08 ,0 ,1);
+    -o-transition: opacity 375ms cubic-bezier(.5, .08 ,0 ,1);
     transition: opacity 375ms cubic-bezier(.5, .08 ,0 ,1);
 }
 
@@ -156,7 +181,8 @@ hr.userlink-separator {
     display: block;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
     max-width: 95%;
     margin: 0 auto;
     letter-spacing: 0.1em;
