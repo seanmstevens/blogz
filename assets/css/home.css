@@ -15,7 +15,7 @@
     flex-wrap: wrap;
 }
 
-.users-container, .recent-posts-container {
+.users-container, .recent-posts-wrapper {
     display: flex;
     flex-direction: column;
     width: 40%;
@@ -134,3 +134,27 @@ hr.userlink-separator {
 
 /**** RECENT POSTS CONTAINER ****/
 
+.recent-posts-container {
+    padding: 20px 0;
+}
+
+.post-container {
+    word-wrap: break-word;
+}
+
+.blog-title-small, .blog-title-small:visited {
+    margin: 0;
+    font-size: 2em;
+    font-weight: 500;
+    text-decoration: none;
+    color: #303031;
+}
+
+.blog-body-preview {
+    font-family: 'Zilla Slab', serif;
+    font-size: 0.85rem
+}
+
+.post-separator {
+    border: 1px solid gainsboro;
+}

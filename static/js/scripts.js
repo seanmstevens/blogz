@@ -119,7 +119,7 @@ function shrinkName() {
     var userlinks = document.getElementsByClassName('userlink');
     for (let i = 0; i < userlinks.length; i++) {
         if (userlinks[i].innerHTML.length > 7) {
-            userlinks[i].style.fontSize = (-1.2 * userlinks[i].innerHTML.length + 31) + "px";
+            userlinks[i].style.fontSize = (-1.15 * userlinks[i].innerHTML.length + 31) + "px";
         };
     };
 };

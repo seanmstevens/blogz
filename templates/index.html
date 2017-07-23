@@ -32,13 +32,18 @@
                         </div>
                     <hr class='homepage-separator'>
                 </div>
-                <div class='recent-posts-container'>
+                <div class='recent-posts-wrapper'>
                     <h1 class='homepage-title'>Recent Posts</h1>
                     <hr class='homepage-separator'>
-                    {% for post in recent_posts %}
-                        <a class="blog-title" href='/blog?id={{ post.id }}'>{{ post.title }}</a>
-                        <p>{{ post.body }}</p>
-                    {% endfor %}
+                    <div class='recent-posts-container'>
+                        {% for post in recent_posts %}
+                            <div class='post-container'>
+                                <a class='blog-title-small' href='/blog?id={{ post.id }}'>{{ post.title }}</a>
+                                <p class='blog-body-preview'>{{ post.body }}</p>
+                            </div>
+                            <hr class='post-separator'>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

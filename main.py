@@ -2,10 +2,11 @@ import random
 from flask import request, redirect, render_template, session, flash
 from app import app, db
 from models import Blog, User
-from hashutils import check_pw_hash
+from hashutils import check_pw_hash, make_pw_hash
 import verifyutils
 from config import POSTS_PER_PAGE
 import time
+from faker import Faker
 
 @app.before_request
 def require_login():
@@ -160,7 +161,7 @@ def bloglist(user=None, page=1):
                            user=get_user(),)
 
 
-@app.route('/newpost', methods = ['POST', 'GET'])
+@app.route('/newpost', methods=['POST', 'GET'])
 def newpost():
     blogs = Blog.query.order_by(Blog.pubdate.desc()).all()
     user = get_user()
@@ -191,14 +192,14 @@ def newpost():
             return redirect('/blog?id={0}'.format(blog_id))
 
         return render_template('newpost.html',
-                                title='New Blog Post',
-                                blog_body=blog_body,
-                                blog_title=blog_title,
-                                title_error=title_error,
-                                body_error=body_error,
-                                placeholder=placeholder,
-                                blogs=blogs,
-                                user=user,)
+                               title='New Blog Post',
+                               blog_body=blog_body,
+                               blog_title=blog_title,
+                               title_error=title_error,
+                               body_error=body_error,
+                               placeholder=placeholder,
+                               blogs=blogs,
+                               user=user,)
 
     return render_template('newpost.html',
                            title='New Blog Post',
@@ -207,14 +208,19 @@ def newpost():
                            user=user,)
 
 ### FOR TESTING PURPOSES ONLY ###
-# @app.route('/build-blogs')
-# def genBlogs():
-#     user = get_user()
-#     for i in range(20):
-#         db.session.add(Blog('TestBlog ' + str(i), 'THIS IS JUST A TEST DONT WORRY ABOUT IT', user))
-#         time.sleep(0.2)
-#         db.session.commit()
-#     return redirect('/blog') 
+@app.route('/build-blogs')
+def genBlogs():
+    fake = Faker()
+    for i in range(5):
+        pw = 'password'
+        user = User(fake.first_name() + fake.last_name(), pw)
+        db.session.add(user)
+        db.session.commit()
+        for i in range(random.randrange(1, 5)):
+            db.session.add(Blog(fake.sentence(nb_words=10, variable_nb_words=True), fake.text(max_nb_chars=500), user))
+            time.sleep(0.1)
+            db.session.commit()
+    return redirect('/blog') 
 ### END TESTING ### 
 
 

@@ -4,7 +4,11 @@
             <div class='content-container'>
                 <h1 class='title' >
                     {% if request.args %}
-                        {{ request.args.get('user') }}'s
+                        {% if request.args.get('user')[-1].lower() == 's' %}
+                            {{ request.args.get('user') }}'
+                        {% else %}
+                            {{ request.args.get('user') }}'s
+                        {% endif %}
                     {% endif %}
                     Bloglist
                 </h1>
