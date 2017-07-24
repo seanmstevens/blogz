@@ -217,7 +217,7 @@ def genBlogs():
         db.session.add(user)
         db.session.commit()
         for i in range(random.randrange(1, 5)):
-            db.session.add(Blog(fake.sentence(nb_words=10, variable_nb_words=True), fake.text(max_nb_chars=500), user))
+            db.session.add(Blog(fake.sentence(nb_words=6, variable_nb_words=True), fake.text(max_nb_chars=500), user))
             time.sleep(0.1)
             db.session.commit()
     return redirect('/blog') 
