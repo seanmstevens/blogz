@@ -213,7 +213,10 @@ hr.menu-line {
 #expanding-list {
     height: 0;
     margin-left: 20px;
-    overflow-y: hidden;
+    padding-right: 15px;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
     border-left: 3px solid #03a9f4;
     -webkit-transition: 275ms cubic-bezier(.5,.08,0,1);
     -o-transition: 275ms cubic-bezier(.5,.08,0,1);
