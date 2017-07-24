@@ -119,7 +119,7 @@ function shrinkName() {
     var userlinks = document.getElementsByClassName('userlink');
     for (let i = 0; i < userlinks.length; i++) {
         if (userlinks[i].innerHTML.length > 7) {
-            userlinks[i].style.fontSize = (-1.15 * userlinks[i].innerHTML.length + 31) + "px";
+            userlinks[i].style.fontSize = (-0.112 * userlinks[i].innerHTML.length + 2.55) + "vw";
         };
     };
 };
@@ -142,11 +142,14 @@ function errorMessaging() {
     var inputFields = document.getElementsByClassName('signup-field');
     for (let i = 0; i < inputFields.length; i++) {
         // Dismiss error messages when focusing on input field
-        inputFields[i].onclick = function() {
+        function removeMsgs() {
             var errorMsgs = this.nextElementSibling;
             errorMsgs.style.display = 'none';
-            this.className = this.className.replace(new RegExp('(?:^|\\s)'+ 'error-border' + '(?:\\s|$)'), '');
+            this.className = this.className = 'signup-field';
         };
+
+        inputFields[i].addEventListener('click', removeMsgs);
+        inputFields[i].addEventListener('change', removeMsgs);
         // Add appropriate error messages when the form elements are changed by the user
         inputFields[i].onchange = function() {
             var errors = [];
@@ -162,7 +165,7 @@ function errorMessaging() {
                 };
             console.log(errors)
             if (errors) {
-                inputFields[i].className += 'error-border';
+                inputFields[i].className += ' error-border';
                 var errorMsgs = inputFields[i].nextElementSibling;
                 errorMsgs.style.display = 'initial';
                 for (let j = 0; j < errors.length; j++) {
