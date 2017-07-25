@@ -2,17 +2,19 @@ import random
 from flask import request, redirect, render_template, session, flash
 from app import app, db
 from models import Blog, User
-from hashutils import check_pw_hash, make_pw_hash
+from hashutils import check_pw_hash
 import verifyutils
 from config import POSTS_PER_PAGE
 import time
 from faker import Faker
+
 
 @app.before_request
 def require_login():
     whitelist = ['login', 'signup', 'bloglist', 'index']
     if all([request.endpoint not in whitelist, 'user' not in session, '/static/' not in request.path]):
         return redirect('/login')
+
 
 def get_user():
     user = User.query.filter_by(username=session.get('user')).first()
@@ -22,9 +24,11 @@ def get_user():
 
     return current_user
 
+
 def get_blogs():
     blogs = Blog.query.order_by(Blog.pubdate.desc())
     return blogs
+
 
 def get_posts():
     posts_dict = {}
@@ -32,6 +36,7 @@ def get_posts():
     for user in users:
         posts_dict[user] = len(Blog.query.filter_by(owner_id=user.id).all())
     return posts_dict
+
 
 @app.route('/')
 def index():
@@ -207,7 +212,7 @@ def newpost():
                            blogs=blogs,
                            user=user,)
 
-### FOR TESTING PURPOSES ONLY ###
+# FOR TESTING PURPOSES ONLY
 @app.route('/build-blogs')
 def genBlogs():
     fake = Faker()
@@ -217,11 +222,11 @@ def genBlogs():
         db.session.add(user)
         db.session.commit()
         for i in range(random.randrange(1, 5)):
-            db.session.add(Blog(fake.sentence(nb_words=6, variable_nb_words=True), fake.text(max_nb_chars=500), user))
+            db.session.add(Blog(fake.sentence(nb_words=6), fake.text(max_nb_chars=500), user))
             time.sleep(0.1)
             db.session.commit()
     return redirect('/blog') 
-### END TESTING ### 
+# END TESTING #
 
 
 if __name__ == '__main__':
