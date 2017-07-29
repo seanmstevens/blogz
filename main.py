@@ -40,8 +40,18 @@ def get_posts():
 
 @app.route('/')
 def index():
-    users = User.query.all()
-    recent_posts = get_blogs().limit(8).all()
+    users = User.query.order_by(User.username).all()
+
+    if len(users) <= 2:
+        posts_number = 2
+    else:
+        posts_number = len(users) // 2
+
+    if len(get_blogs().all()) > 8:
+        posts_number = 8
+
+    recent_posts = get_blogs().limit(posts_number).all()
+
     return render_template('index.html',
                            title="Home",
                            users=users,

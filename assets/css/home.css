@@ -9,13 +9,15 @@
     display: flex;
     margin: auto 0;
     padding: 55px 0;
-    width: 80%;
+    width: 85%;
+    min-width: 1000px;
     justify-content: space-around;
     align-content: center;
     flex-wrap: wrap;
 }
 
 .users-container, .recent-posts-wrapper {
+    height: 100%;
     display: flex;
     flex-direction: column;
     width: 40%;
@@ -42,6 +44,10 @@
 
 /**** USERS CONTAINER ****/
 
+.users-container {
+    padding-bottom: 30px;
+}
+
 .user-box-container {
     justify-content: space-around;
     display: flex;
@@ -64,10 +70,16 @@
 .user-box-overlay {
     z-index: 1;
     position: absolute;
+    background: rgb(40, 40, 40);
+    opacity: 0;
     height: 100%;
     width: 100%;
     border-radius: 1000px;
-    transition: background 375ms cubic-bezier(.5, .08 ,0 ,1);;
+    transition: opacity 375ms cubic-bezier(.5, .08 ,0 ,1);;
+}
+
+.overlay-show {
+    opacity: 0.3;
 }
 
 .user-initial {
@@ -85,6 +97,10 @@
     font-weight: 700;
     color: white;
     transition: filter 375ms cubic-bezier(.5, .08 ,0 ,1);
+}
+
+.blur {
+    filter: blur(8px);
 }
 
 .no-underline {
@@ -106,6 +122,10 @@
     transition: opacity 375ms cubic-bezier(.5, .08 ,0 ,1);
 }
 
+.user-details-show {
+    opacity: 1;
+}
+
 hr.userlink-separator {
     border: 1px solid white;
     width: 80%;
@@ -120,7 +140,7 @@ hr.userlink-separator {
     margin: 0 auto;
     letter-spacing: 0.1em;
     font-weight: 500;
-    font-size: 1.5em;
+    font-size: 2vw;
     text-shadow: none;
     text-decoration: none;
     color: white;
@@ -151,8 +171,36 @@ hr.userlink-separator {
 }
 
 .blog-body-preview {
+    position: relative;
+    margin-bottom: 0;
     font-family: 'Zilla Slab', serif;
-    font-size: 0.85rem
+    font-size: 0.85rem;
+    line-height: 1.3em;
+    height: 2.6em;
+    overflow: hidden;
+}
+
+.blog-body-preview::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 70%;
+    height: 1.3em;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%);
+}
+
+.read-more-link, .read-more-link:visited {
+    display: block;
+    margin: 5px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #03a9f4;
+    text-decoration: none;
+}
+
+.read-more-link:hover {
+    color: #26b7f9;
 }
 
 .post-separator {

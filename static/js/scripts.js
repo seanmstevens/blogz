@@ -103,14 +103,14 @@ function blurLetter() {
     var boxes = document.getElementsByClassName('user-box');
     for (let i = 0; i < boxes.length; i++) {
         boxes[i].onmouseover = function() {
-            this.firstElementChild.style.background = "rgba(40, 40, 40, 0.30)";
-            this.childNodes[3].style.filter = "blur(8px)";
-            this.getElementsByClassName('user-details')[0].style.opacity = '1';
+            this.firstElementChild.className += ' overlay-show';
+            this.childNodes[3].className += ' blur';
+            this.getElementsByClassName('user-details')[0].className += ' user-details-show';
         }
         boxes[i].onmouseout = function() {
-            this.firstElementChild.style.background = "initial";
-            this.childNodes[3].style.filter = "initial";
-            this.getElementsByClassName('user-details')[0].style.opacity = '0';
+            this.firstElementChild.className = 'user-box-overlay';
+            this.childNodes[3].className = 'user-initial';
+            this.getElementsByClassName('user-details')[0].className = 'user-details';
         };
     };
 };
@@ -119,7 +119,7 @@ function shrinkName() {
     var userlinks = document.getElementsByClassName('userlink');
     for (let i = 0; i < userlinks.length; i++) {
         if (userlinks[i].innerHTML.length > 7) {
-            userlinks[i].style.fontSize = (-0.112 * userlinks[i].innerHTML.length + 2.55) + "vw";
+            userlinks[i].style.fontSize = (-0.095 * userlinks[i].innerHTML.length + 2.35) + "vw";
         };
     };
 };
@@ -141,11 +141,15 @@ function dismissFlash() {
 function errorMessaging() {
     var inputFields = document.getElementsByClassName('signup-field');
     for (let i = 0; i < inputFields.length; i++) {
-        // Dismiss error messages when focusing on input field
+        // INITIALIZATION -- Dismiss error messages when focusing on input field
         function removeMsgs() {
             var errorMsgs = this.nextElementSibling;
-            errorMsgs.style.display = 'none';
-            this.className = this.className = 'signup-field';
+            var singleMsg = errorMsgs.firstElementChild;
+            while (singleMsg) {
+                errorMsgs.removeChild(singleMsg);
+                singleMsg = errorMsgs.firstElementChild;
+            };
+            this.className = 'signup-field';
         };
 
         inputFields[i].addEventListener('click', removeMsgs);
@@ -163,7 +167,6 @@ function errorMessaging() {
                 } else if (!this.value.charAt(0).match(/^[a-zA-Z]+$/))
                     errors.push("Your username must start with a letter.")
                 };
-            console.log(errors)
             if (errors) {
                 inputFields[i].className += ' error-border';
                 var errorMsgs = inputFields[i].nextElementSibling;
